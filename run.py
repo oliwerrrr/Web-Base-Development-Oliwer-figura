@@ -1,69 +1,132 @@
 #!/usr/bin/env python3
 """
-Skrypt uruchomieniowy dla przeglądarki wizualizacji.
-Służy jako wygodny wrapper do uruchamiania głównego programu.
+Skrypt uruchamiający aplikację przeglądania i analizy wizualizacji.
 """
+
 import os
 import sys
-import subprocess
 import argparse
-import time
+import webbrowser
+from PyQt5.QtWidgets import QApplication
 
-
-def check_dependencies():
-    """Sprawdza czy wszystkie wymagane zależności są zainstalowane."""
-    try:
-        import PyQt5
-        import PIL
-        import numpy
-        return True
-    except ImportError as e:
-        print(f"Kurwa, brakuje zależności: {e}")
-        print("Instaluję brakujące zależności...")
-        subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
-        return False
-
-
-def generate_samples():
-    """Generuje przykładowe dane jeśli nie istnieją."""
-    if not os.path.exists("wyniki_test"):
-        print("Kurwa, nie ma przykładowych danych! Generuję...")
-        subprocess.run([sys.executable, "test_visualization_viewer.py", "--generate-samples"])
-        time.sleep(1)  # Daj chwilę na zakończenie generowania
-        print("Dane wygenerowane.")
-    return "wyniki_test"
-
+# Import modułów z projektu
+import visualization_viewer_qt  # Przeglądarka wizualizacji
+try:
+    import data_analysis  # Moduł analizy danych
+    import data_processor  # Moduł przetwarzania danych
+    HAS_DATA_MODULES = True
+except ImportError:
+    HAS_DATA_MODULES = False
 
 def main():
-    """Główna funkcja uruchomieniowa."""
-    parser = argparse.ArgumentParser(description="Przeglądarka wizualizacji algorytmów")
-    parser.add_argument("dir", nargs="?", help="Katalog z wynikami wizualizacji")
-    parser.add_argument("--gen-samples", action="store_true", help="Wygeneruj przykładowe dane")
-    parser.add_argument("--test", action="store_true", help="Uruchom testy")
+    """Główna funkcja uruchamiająca aplikację."""
+    parser = argparse.ArgumentParser(description="Uruchamia aplikację przeglądania wizualizacji i analizy danych.")
+    
+    # Argumenty dla przeglądarki wizualizacji
+    parser.add_argument('--viewer', action='store_true', help='Uruchamia przeglądarkę wizualizacji')
+    parser.add_argument('--dir', type=str, default='wyniki_test', help='Katalog z plikami wizualizacji (domyślnie: wyniki_test)')
+    
+    # Argumenty dla analizy danych
+    if HAS_DATA_MODULES:
+        parser.add_argument('--analyze', action='store_true', help='Uruchamia przykładową analizę danych')
+        parser.add_argument('--data-file', type=str, help='Ścieżka do pliku CSV z danymi do analizy')
+        parser.add_argument('--correlation', action='store_true', help='Wykonuje analizę korelacji')
+        parser.add_argument('--regression', action='store_true', help='Wykonuje regresję liniową')
+        parser.add_argument('--outliers', action='store_true', help='Wykonuje analizę wartości odstających')
+        parser.add_argument('--process', action='store_true', help='Przetwarza dane przed analizą')
     
     args = parser.parse_args()
     
-    # Sprawdź zależności
-    dependencies_ok = check_dependencies()
-    if not dependencies_ok:
-        print("Kurwa, zainstalowałem zależności. Uruchom ten skrypt ponownie.")
-        return
+    # Uruchom przeglądarkę wizualizacji, jeśli wybrano --viewer lub nie podano argumentów
+    if args.viewer or (not args.viewer and not getattr(args, 'analyze', False)):
+        print(f"Uruchamiam przeglądarkę z katalogiem {args.dir}")
+        
+        # Uruchom aplikację PyQt5
+        app = QApplication(sys.argv)
+        viewer = visualization_viewer_qt.VisualizationViewer(args.dir)
+        viewer.show()
+        sys.exit(app.exec_())
     
-    # Uruchom testy jeśli podano flagę
-    if args.test:
-        print("Kurwa, odpalam testy...")
-        subprocess.run([sys.executable, "test_visualization_viewer.py"])
-        return
-    
-    # Wygeneruj przykładowe dane jeśli podano flagę lub nie podano katalogu
-    if args.gen_samples or not args.dir:
-        results_dir = generate_samples()
-    else:
-        results_dir = args.dir
-    
-    # Uruchom przeglądarkę
-    print(f"Kurwa, odpalam przeglądarkę z katalogiem: {results_dir}")
-    subprocess.run([sys.executable, "visualization_viewer_qt.py", results_dir])
+    # Uruchom analizę danych, jeśli wybrano --analyze
+    if HAS_DATA_MODULES and getattr(args, 'analyze', False):
+        data_path = args.data_file if args.data_file else "dane/przyklad.csv"
+        
+        # Sprawdź czy istnieje katalog dane, jeśli nie, utwórz go
+        os.makedirs(os.path.dirname(data_path), exist_ok=True)
+        
+        print(f"Uruchamiam analizę danych z pliku {data_path}")
+        
+        # Przetwarzanie danych
+        if args.process:
+            processor = data_processor.DataProcessor()
+            
+            # Jeśli plik nie istnieje, main() z data_processor.py wygeneruje przykładowe dane
+            if not os.path.exists(data_path):
+                data_processor.main()
+            else:
+                data = processor.load_data(data_path)
+                
+                if data is not None:
+                    # Przykładowe przetwarzanie
+                    processor.remove_duplicates()
+                    processor.handle_missing_values()
+                    processor.remove_outliers(method='iqr')
+                    processor.scale_features(method='standard')
+                    processor.encode_categorical(method='onehot')
+                    
+                    # Pokaż log transformacji
+                    print("\nWykonane transformacje:")
+                    for i, transform in enumerate(processor.get_transformation_log(), 1):
+                        print(f"{i}. {transform}")
+                    
+                    # Zapisz przetworzone dane
+                    processed_path = "dane/przetworzone.csv"
+                    processor.save_data(processed_path)
+                    data_path = processed_path
+        
+        # Analiza danych
+        analyzer = data_analysis.DataAnalyzer(data_path=data_path)
+        df = analyzer.load_data()
+        
+        if df is not None:
+            # Eksploracja danych
+            info = analyzer.data_exploration()
+            
+            # Wizualizacje EDA
+            analyzer.eda_visualizations()
+            
+            # Analiza korelacji
+            if getattr(args, 'correlation', False) or not any([args.correlation, args.regression, args.outliers]):
+                print("\nWykonuję analizę korelacji...")
+                correlation_matrix = analyzer.correlation_analysis()
+            
+            # Regresja liniowa
+            if getattr(args, 'regression', False) or not any([args.correlation, args.regression, args.outliers]):
+                print("\nWykonuję analizę regresji liniowej...")
+                # Wybierz kolumny do regresji - pierwsza i druga kolumna numeryczna
+                numeric_cols = list(df.select_dtypes(include=['number']).columns)
+                if len(numeric_cols) >= 2:
+                    x_col, y_col = numeric_cols[0], numeric_cols[1]
+                    regression_results = analyzer.linear_regression(x_col, y_col)
+            
+            # Analiza wartości odstających
+            if getattr(args, 'outliers', False) or not any([args.correlation, args.regression, args.outliers]):
+                print("\nWykonuję analizę wartości odstających...")
+                outliers_info = analyzer.detect_outliers()
+            
+            # Wyświetl ścieżkę do katalogu z wynikami
+            print(f"\nAnaliza zakończona! Wyniki zapisano w katalogu: {analyzer.output_dir}")
+            
+            # Otwórz katalog z wynikami w przeglądarce plików
+            try:
+                if sys.platform == 'darwin':  # macOS
+                    os.system(f'open "{os.path.abspath(analyzer.output_dir)}"')
+                elif sys.platform == 'win32':  # Windows
+                    os.system(f'explorer "{os.path.abspath(analyzer.output_dir)}"')
+                else:  # Linux
+                    os.system(f'xdg-open "{os.path.abspath(analyzer.output_dir)}"')
+            except Exception as e:
+                print(f"Nie udało się otworzyć katalogu z wynikami: {e}")
 
 
 if __name__ == "__main__":

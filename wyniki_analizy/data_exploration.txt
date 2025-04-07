@@ -1,0 +1,43 @@
+# Eksploracja danych (DE)
+
+Wymiary danych: (105, 4)
+Liczba kolumn: 4
+Liczba wierszy: 105
+
+## Kolumny
+- x1 (float64): 1 brakujących wartości
+- x2 (float64): 1 brakujących wartości
+- y (float64): 0 brakujących wartości
+- category (object): 1 brakujących wartości
+
+## Statystyki dla kolumn numerycznych
+
+### x1
+- count: 104.0
+- mean: 0.0063129020657771585
+- std: 1.342771826018791
+- min: -2.6197451040897444
+- 25%: -0.5718753194104308
+- 50%: -0.12695629177971254
+- 75%: 0.5205905857315083
+- max: 10.0
+
+### x2
+- count: 104.0
+- mean: 5.2134865450537085
+- std: 2.130740701667599
+- min: 1.162457569401917
+- 25%: 3.477769107295647
+- 50%: 5.347758738683021
+- 75%: 6.193119314582908
+- max: 15.0
+
+### y
+- count: 105.0
+- mean: 10.055854716059933
+- std: 4.700583581919663
+- min: -1.494364680999146
+- 25%: 6.672395733546326
+- 50%: 9.975967516495489
+- 75%: 13.171125692475105
+- max: 22.79741731857295

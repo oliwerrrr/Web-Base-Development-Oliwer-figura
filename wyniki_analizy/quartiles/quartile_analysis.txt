@@ -1,0 +1,29 @@
+# Analiza kwartylowa
+
+## Kolumna: x1
+Minimum: -2.619745
+Q1 (25%): -0.571875
+Mediana (50%): -0.126956
+Q3 (75%): 0.520591
+Maksimum: 10.000000
+IQR (Q3-Q1): 1.092466
+Rozstęp (max-min): 12.619745
+
+## Kolumna: x2
+Minimum: 1.162458
+Q1 (25%): 3.477769
+Mediana (50%): 5.347759
+Q3 (75%): 6.193119
+Maksimum: 15.000000
+IQR (Q3-Q1): 2.715350
+Rozstęp (max-min): 13.837542
+
+## Kolumna: y
+Minimum: -1.494365
+Q1 (25%): 6.672396
+Mediana (50%): 9.975968
+Q3 (75%): 13.171126
+Maksimum: 22.797417
+IQR (Q3-Q1): 6.498730
+Rozstęp (max-min): 24.291782
+

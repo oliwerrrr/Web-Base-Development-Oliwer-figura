@@ -1,296 +1,205 @@
-# Zajebista dokumentacja algorytmów i wizualizacji
-
-Ten dokument zawiera szczegółowy opis wszystkich algorytmów i typów wizualizacji używanych w naszym projekcie. Kurwa, to będzie dobre!
+# Dokumentacja Algorytmów Analizy Danych
 
 ## Spis treści
 
-1. [Rodzaje wizualizacji](#rodzaje-wizualizacji)
-   - [Histogramy](#histogramy)
-   - [Wykresy funkcji](#wykresy-funkcji)
-   - [Mapy ciepła](#mapy-ciepła)
-2. [Algorytmy i ich wizualizacje](#algorytmy-i-ich-wizualizacje)
-   - [Rozkłady statystyczne](#rozkłady-statystyczne)
-   - [Funkcje matematyczne](#funkcje-matematyczne)
-   - [Algorytmy generujące mapy ciepła](#algorytmy-generujące-mapy-ciepła)
-3. [Interpretacja wizualizacji](#interpretacja-wizualizacji)
-4. [Tworzenie własnych wizualizacji](#tworzenie-własnych-wizualizacji)
+1. [Wprowadzenie](#wprowadzenie)
+2. [Analiza Danych (DA)](#analiza-danych-da)
+3. [Eksploracja Danych (DE)](#eksploracja-danych-de)
+4. [Eksploracyjna Analiza Danych (EDA)](#eksploracyjna-analiza-danych-eda)
+5. [Korelacja Statystyczna](#korelacja-statystyczna)
+6. [Regresja Liniowa](#regresja-liniowa)
+7. [Parametry Ilościowe i Jakościowe](#parametry-ilościowe-i-jakościowe)
+8. [Wartości Odstające](#wartości-odstające)
+9. [Kwartyle i Rozstęp Międzykwartylowy (IQR)](#kwartyle-i-rozstęp-międzykwartylowy-iqr)
+10. [Mapy Ciepła](#mapy-ciepła)
+11. [Przetwarzanie Danych](#przetwarzanie-danych)
+12. [Przykłady Użycia](#przykłady-użycia)
 
-## Rodzaje wizualizacji
+## Wprowadzenie
 
-### Histogramy
+Ten dokument opisuje algorytmy i techniki analizy danych zaimplementowane w projekcie. Biblioteka zawiera dwa główne moduły:
 
-Histogram to, kurwa, zajebisty sposób na pokazanie rozkładu wartości w zbiorze danych. Składa się z:
-- **Oś X**: Kategorie lub przedziały wartości
-- **Oś Y**: Częstotliwość lub liczba wystąpień
-- **Słupki**: Reprezentują liczbę elementów w każdej kategorii
+- `data_analysis.py` - zawiera klasę `DataAnalyzer` do analizy i wizualizacji danych
+- `data_processor.py` - zawiera klasę `DataProcessor` do przetwarzania i transformacji danych
 
-#### Przykłady w projekcie:
+## Analiza Danych (DA)
 
-- **histogram_normalny.png** - Pokazuje rozkład normalny (Gaussa) dla losowo generowanych wartości
-- **histogram_poisson.png** - Przedstawia rozkład Poissona, który modeluje rzadkie, losowe zdarzenia
+Analiza danych (Data Analysis) to proces badania, czyszczenia, przekształcania i modelowania danych w celu odkrycia użytecznych informacji, wyciągnięcia wniosków i wsparcia podejmowania decyzji.
 
-### Wykresy funkcji
+### Zaimplementowane funkcje:
 
-Wykresy funkcji to graficzna reprezentacja zależności między dwiema zmiennymi. Składają się z:
-- **Oś X**: Wartości wejściowe (dziedzina funkcji)
-- **Oś Y**: Wartości wyjściowe (zbiór wartości funkcji)
-- **Punkty/linia**: Pokazują zależność między x i y
+- Wczytywanie danych z plików CSV
+- Podstawowe statystyki opisowe
+- Wizualizacja danych
+- Analiza korelacji między zmiennymi
+- Modelowanie regresji liniowej
 
-#### Przykłady w projekcie:
+## Eksploracja Danych (DE)
 
-- **wykres_sin.png** - Wykres funkcji sinus w przedziale [0, 10]
-- **wykres_kwadratowy.png** - Wykres funkcji kwadratowej x² / 10 w przedziale [0, 10]
+Eksploracja danych (Data Exploration) to pierwszy krok w analizie danych, polegający na zapoznaniu się z danymi, ich strukturą i podstawowymi właściwościami.
 
-### Mapy ciepła
+### Zaimplementowane funkcje:
 
-Mapy ciepła to, kurwa, najlepszy sposób na wizualizację danych dwuwymiarowych, gdzie wartość każdego punktu (i,j) oznaczona jest kolorem. Składają się z:
-- **Siatka komórek**: Reprezentuje punkty danych
-- **Kolorystyka**: Intensywność koloru odpowiada wartościom danych
-- **Legenda kolorów**: Określa mapowanie wartości na kolory
+- Zbadanie struktury danych (wymiary, kolumny, typy danych)
+- Wykrywanie brakujących wartości
+- Podstawowe statystyki dla kolumn numerycznych i kategorycznych
+- Generowanie raportów tekstowych z wynikami eksploracji
 
-#### Przykłady w projekcie:
+## Eksploracyjna Analiza Danych (EDA)
 
-- **mapa_ciepla_losowa.png** - Mapa ciepła z losowymi wartościami
-- **mapa_ciepla_sincos.png** - Mapa ciepła generowana przez funkcję sin(i/5) * cos(j/5)
+Eksploracyjna analiza danych (Exploratory Data Analysis) to podejście do analizy zestawów danych, które wykorzystuje techniki wizualizacji do odkrywania wzorców, identyfikacji anomalii i testowania hipotez.
 
-## Algorytmy i ich wizualizacje
+### Zaimplementowane funkcje:
 
-### Rozkłady statystyczne
+- Histogramy dla zmiennych numerycznych
+- Wykresy pudełkowe (boxplots) dla wykrywania wartości odstających
+- Wykresy rozproszenia (scatterplots) dla par zmiennych
+- Mapy ciepła korelacji
 
-#### Rozkład normalny (Gaussa)
+## Korelacja Statystyczna
 
-**Co to, kurwa, jest?**
-Rozkład normalny to jeden z najważniejszych rozkładów prawdopodobieństwa w statystyce. Opisuje zjawiska, w których większość wartości skupia się wokół średniej.
+Korelacja statystyczna to miara zależności między dwoma zmiennymi. Najczęściej używane metody korelacji to korelacja Pearsona, Spearmana i Kendalla.
 
-**Jak to działa:**
-- Generowanie próbek: `np.random.normal(średnia, odchylenie_standardowe, liczba_próbek)`
-- W naszym przypadku: `np.random.normal(50, 10, 10)` - średnia 50, odchylenie 10, 10 próbek
+### Zaimplementowane funkcje:
 
-**Zastosowania:**
-- Modelowanie błędów pomiarowych
-- Szacowanie niepewności
-- Podstawa dla testów statystycznych (t-test, z-test)
-- Modelowanie zjawisk naturalnych
+- Obliczanie macierzy korelacji Pearsona
+- Obliczanie macierzy korelacji Spearmana
+- Obliczanie macierzy korelacji Kendalla
+- Wizualizacja macierzy korelacji jako map ciepła
 
-**Interpretacja wizualizacji:**
-- Charakterystyczny kształt "dzwonu"
-- Symetryczny rozkład wokół średniej
-- Większość wartości w okolicy średniej
+## Regresja Liniowa
 
-#### Rozkład Poissona
+Regresja liniowa to technika modelowania statystycznego używana do przewidywania wartości zmiennej zależnej na podstawie jednej lub więcej zmiennych niezależnych.
 
-**Co to, kurwa, jest?**
-Rozkład Poissona modeluje liczbę zdarzeń występujących w ustalonym przedziale czasu lub przestrzeni, przy założeniu, że zdarzenia te zachodzą ze stałą średnią częstością i niezależnie od siebie.
+### Zaimplementowane funkcje:
 
-**Jak to działa:**
-- Generowanie próbek: `np.random.poisson(lambda, liczba_próbek)`
-- W naszym przypadku: `np.random.poisson(5, 10)` - średnia 5, 10 próbek
+- Budowa modelu regresji liniowej
+- Podział danych na zbiór treningowy i testowy
+- Ocena modelu przy użyciu różnych metryk:
+  - MAE (Mean Absolute Error)
+  - MSE (Mean Squared Error)
+  - RMSE (Root Mean Squared Error)
+  - R² (współczynnik determinacji)
+- Wizualizacja linii regresji i danych
 
-**Zastosowania:**
-- Modelowanie liczby przychodzących połączeń telefonicznych
-- Analiza liczby wypadków lub katastrof
-- Modelowanie rzadkich zdarzeń (liczba mutacji DNA, liczba awarii)
-- Procesy kolejkowe
+## Parametry Ilościowe i Jakościowe
 
-**Interpretacja wizualizacji:**
-- Dyskretny rozkład (tylko liczby całkowite)
-- Zskośny (dla małych wartości lambda)
-- Dla dużych lambda zbliża się do rozkładu normalnego
+Dane można podzielić na parametry ilościowe (numeryczne) i jakościowe (kategoryczne).
 
-### Funkcje matematyczne
+### Obsługa parametrów ilościowych:
 
-#### Funkcja sinus
+- Statystyki opisowe: średnia, mediana, odchylenie standardowe, itp.
+- Skalowanie danych (standaryzacja, normalizacja)
+- Tworzenie cech wielomianowych i interakcyjnych
 
-**Co to, kurwa, jest?**
-Podstawowa funkcja trygonometryczna opisująca falę harmoniczną.
+### Obsługa parametrów jakościowych:
 
-**Definicja matematyczna:**
-- y = sin(x)
-- W naszym przypadku: `np.sin(x_data1)` gdzie `x_data1 = np.linspace(0, 10, 20)`
+- Kodowanie one-hot
+- Kodowanie etykiet
+- Statystyki dla danych kategorycznych (liczebność, częstość)
 
-**Zastosowania:**
-- Modelowanie drgań i fal
-- Analiza sygnałów
-- Przewidywanie zjawisk cyklicznych
-- Przetwarzanie dźwięku i obrazu
+## Wartości Odstające
 
-**Interpretacja wizualizacji:**
-- Okresowa funkcja z okresem 2π
-- Wartości w zakresie [-1, 1]
-- Symetryczna względem osi Y
+Wartości odstające (outliers) to obserwacje, które znacznie różnią się od innych obserwacji w danych.
 
-#### Funkcja kwadratowa
+### Zaimplementowane metody wykrywania:
 
-**Co to, kurwa, jest?**
-Funkcja drugiego stopnia postaci y = ax² + bx + c.
+- Metoda IQR (Interquartile Range)
+- Metoda Z-score
+- Wizualizacja wartości odstających na wykresach pudełkowych
 
-**Definicja matematyczna:**
-- W naszym przypadku: `y_data2 = x_data2 ** 2 / 10` gdzie `x_data2 = np.linspace(0, 10, 20)`
-- Uproszczona postać: y = x²/10
+## Kwartyle i Rozstęp Międzykwartylowy (IQR)
 
-**Zastosowania:**
-- Modelowanie ruchu w polu grawitacyjnym
-- Analiza kosztów i zysków
-- Optymalizacja
-- Modelowanie procesów z przyspieszeniem
+Kwartyle dzielą zbiór danych na cztery równe części. Rozstęp międzykwartylowy (IQR) to różnica między trzecim (Q3) a pierwszym (Q1) kwartylem.
 
-**Interpretacja wizualizacji:**
-- Paraboliczny kształt
-- Minimum w punkcie (0,0)
-- Monotoniczna dla x > 0
-- Wartość rośnie coraz szybciej wraz ze wzrostem x
+### Zaimplementowane funkcje:
 
-### Algorytmy generujące mapy ciepła
+- Obliczanie kwartyli (Q1, Q2/mediana, Q3)
+- Obliczanie rozstępu międzykwartylowego (IQR)
+- Analiza kwartylowa dla wszystkich zmiennych numerycznych
+- Wizualizacja kwartyli na wykresach pudełkowych
 
-#### Losowa mapa ciepła
+## Mapy Ciepła
 
-**Co to, kurwa, jest?**
-Mapa ciepła generowana przez wartości losowe z rozkładu jednostajnego.
+Mapy ciepła (heatmaps) to graficzne reprezentacje danych, gdzie wartości są reprezentowane przez kolory. Są szczególnie przydatne do wizualizacji macierzy korelacji.
 
-**Jak to działa:**
-- Generowanie danych: `np.random.rand(10, 10)` - macierz 10x10 z losowymi wartościami [0,1]
-- Kolorowanie: Wartości mapowane na kolory (w naszym przypadku "hot" - odcienie czerwieni i żółci)
+### Zaimplementowane funkcje:
 
-**Zastosowania:**
-- Testowanie algorytmów wizualizacji
-- Modelowanie szumu
-- Generowanie losowych terranów/map
-- Symulacje losowych procesów
+- Tworzenie map ciepła dla macierzy danych
+- Dostosowywanie kolorów i etykiet
+- Wizualizacja macierzy korelacji jako map ciepła
 
-**Interpretacja wizualizacji:**
-- Brak widocznego wzorca (szum)
-- Losowy rozkład kolorów
-- Różnice w intensywności odpowiadają losowym wartościom
+## Przetwarzanie Danych
 
-#### Mapa ciepła sin-cos
+Moduł `data_processor.py` zawiera funkcje do przetwarzania i czyszczenia danych przed analizą.
 
-**Co to, kurwa, jest?**
-Mapa ciepła generowana przez funkcję matematyczną sin(i/5) * cos(j/5).
+### Zaimplementowane funkcje:
 
-**Jak to działa:**
+- Usuwanie duplikatów
+- Obsługa brakujących wartości
+- Skalowanie cech numerycznych
+- Kodowanie cech kategorycznych
+- Usuwanie wartości odstających
+- Selekcja cech
+- Tworzenie cech wielomianowych i interakcyjnych
+- Dyskretyzacja zmiennych numerycznych
+
+## Przykłady Użycia
+
+### Analiza danych
+
 ```python
-for i in range(10):
-    for j in range(10):
-        heatmap_data2[i, j] = math.sin(i/5) * math.cos(j/5)
+from data_analysis import DataAnalyzer
+
+# Inicjalizacja analizatora
+analyzer = DataAnalyzer(data_path="dane/przyklad.csv")
+
+# Wczytanie danych
+df = analyzer.load_data()
+
+# Eksploracja danych
+analyzer.data_exploration()
+
+# Wizualizacje EDA
+analyzer.eda_visualizations()
+
+# Analiza korelacji
+correlation_matrix = analyzer.correlation_analysis(method='pearson')
+
+# Regresja liniowa
+regression_results = analyzer.linear_regression('x1', 'y')
+
+# Analiza wartości odstających
+outliers_info = analyzer.detect_outliers(method='iqr')
+
+# Analiza kwartylowa
+quartile_info = analyzer.quartile_analysis()
 ```
 
-**Zastosowania:**
-- Wizualizacja pól wektorowych
-- Modelowanie interferencji fal
-- Wizualizacja funkcji dwóch zmiennych
-- Analiza falna i spektralna
+### Przetwarzanie danych
 
-**Interpretacja wizualizacji:**
-- Okresowy wzór z widocznymi maksimami i minimami
-- Struktura "szachownicy" z przeciwnymi wartościami
-- Płynne przejścia kolorów dzięki ciągłości funkcji
-
-## Interpretacja wizualizacji
-
-### Jak czytać histogramy:
-1. **Kurwa, najpierw spójrz na oś X** - Co reprezentują poszczególne słupki?
-2. **Potem na oś Y** - Ile elementów/zdarzeń zawiera każdy słupek?
-3. **Znajdź najwyższy słupek** - To najczęstsza wartość (modalna)
-4. **Ocen kształt** - Czy rozkład jest symetryczny? Skośny? Wielomodalny?
-5. **Zwróć uwagę na wartości odstające** - Czy są słupki znacznie wyższe/niższe od pozostałych?
-
-### Jak czytać wykresy funkcji:
-1. **Kurwa, najpierw zidentyfikuj funkcję** - Jaki jest kształt krzywej?
-2. **Znajdź ekstrema** - Gdzie funkcja osiąga maksima i minima?
-3. **Oceń monotoniczność** - Gdzie funkcja rośnie, a gdzie maleje?
-4. **Zwróć uwagę na asymptoty i osobliwości** - Czy funkcja dąży do nieskończoności?
-5. **Sprawdź przecięcia z osiami** - Gdzie funkcja przyjmuje wartość zero?
-
-### Jak czytać mapy ciepła:
-1. **Kurwa, najpierw sprawdź skalę kolorów** - Co oznaczają poszczególne kolory?
-2. **Znajdź ekstrema** - Gdzie występują najmniejsze i największe wartości?
-3. **Szukaj wzorów** - Czy widać powtarzające się struktury?
-4. **Analizuj gradienty** - Gdzie wartości zmieniają się najszybciej?
-5. **Interpretuj w kontekście danych** - Co oznaczają obserwowane wzorce?
-
-## Tworzenie własnych wizualizacji
-
-Jeśli chcesz, kurwa, dodać własne wizualizacje do projektu, postępuj zgodnie z tymi krokami:
-
-### Dodawanie nowego histogramu:
 ```python
-from PIL import Image, ImageDraw
-import numpy as np
+from data_processor import DataProcessor
 
-# Generuj dane
-data = np.random.YOUR_DISTRIBUTION(params)
+# Inicjalizacja procesora
+processor = DataProcessor()
 
-# Twórz histogram
-img = Image.new('RGB', (500, 400), color='white')
-draw = ImageDraw.Draw(img)
+# Wczytanie danych
+data = processor.load_data("dane/przyklad.csv")
 
-# Rysuj słupki
-max_value = max(data)
-bar_width = 30
-gap = 10
+# Przetwarzanie danych
+processor.remove_duplicates()
+processor.handle_missing_values(strategy='mean')
+processor.remove_outliers(method='iqr')
+processor.scale_features(method='standard')
+processor.encode_categorical(method='onehot')
+processor.create_polynomial_features(degree=2)
+processor.create_interaction_features()
 
-for i, value in enumerate(data):
-    bar_height = int((value / max_value) * 300)
-    x0 = 50 + i * (bar_width + gap)
-    y0 = 350 - bar_height
-    x1 = x0 + bar_width
-    y1 = 350
-    draw.rectangle([x0, y0, x1, y1], fill="color", outline='black')
-
-# Zapisz plik
-img.save("sciezka/do/twojego_histogramu.png")
+# Zapisanie przetworzonych danych
+processor.save_data("dane/przetworzone.csv")
 ```
 
-### Dodawanie nowego wykresu funkcji:
-```python
-from PIL import Image, ImageDraw
-import numpy as np
+---
 
-# Generuj dane
-x_values = np.linspace(start, stop, num_points)
-y_values = YOUR_FUNCTION(x_values)
-
-# Twórz wykres
-img = Image.new('RGB', (500, 400), color='white')
-draw = ImageDraw.Draw(img)
-
-# Skaluj dane do wymiarów obrazu
-# [kod skalowania]
-
-# Rysuj punkty i linie
-# [kod rysowania]
-
-# Zapisz plik
-img.save("sciezka/do/twojego_wykresu.png")
-```
-
-### Dodawanie nowej mapy ciepła:
-```python
-from PIL import Image, ImageDraw
-import numpy as np
-
-# Generuj dane 2D
-data = np.zeros((rows, cols))
-for i in range(rows):
-    for j in range(cols):
-        data[i, j] = YOUR_FUNCTION(i, j)
-
-# Twórz mapę ciepła
-# [kod tworzenia mapy ciepła]
-
-# Zapisz plik
-img.save("sciezka/do/twojej_mapy_ciepla.png")
-```
-
-## Podsumowanie
-
-Kurwa, teraz masz pełen obraz wszystkich wizualizacji i algorytmów w projekcie! Możesz:
-1. Przeglądać istniejące wizualizacje
-2. Interpretować ich znaczenie
-3. Tworzyć własne wizualizacje
-4. Wykorzystywać różne algorytmy i rozkłady statystyczne
-
-Jeśli masz jakieś pytania, pamiętaj że zawsze możesz:
-- Przejrzeć kod źródłowy w `test_visualization_viewer.py`
-- Uruchomić przeglądarkę wizualizacji: `python run.py`
-- Wygenerować nowe przykłady: `python run.py --gen-samples` 
+Dokumentacja przygotowana dla projektu Web Base Development. 
