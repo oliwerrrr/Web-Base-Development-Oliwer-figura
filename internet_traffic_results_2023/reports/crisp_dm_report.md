@@ -79,8 +79,13 @@ Key parameters in upload-related data:
 
 ### Model Evaluation
 
-- R² score for the latency impact model: 0.1142
-- MAE for the latency impact model: 5,195,904.7066
+- R² score for the latency impact model: 0.1524
+  - R² (coefficient of determination) measures what percentage of the variability in download speed is explained by the variability in latency. The value of 0.1524 means that approximately 15.24% of the variability in download speed is explained by latency, indicating a moderate linear relationship significantly stronger than in 2021.
+  
+- MAE for the latency impact model: 6,245,021.3347
+  - MAE (Mean Absolute Error) measures the average absolute difference between actual and predicted speeds in bytes per second. The MAE value is lower than in 2021, suggesting improved model accuracy.
+
+- The increase in R² from 0.025 in 2021 to 0.1524 in 2023 indicates a significant enhancement in the impact of latency on download speed. Simultaneously, the approximately 12% decrease in MAE confirms that the model has become more accurate in predicting speed based on latency.
 
 ## 5. Evaluation
 

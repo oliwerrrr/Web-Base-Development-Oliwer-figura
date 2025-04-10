@@ -1,4 +1,4 @@
-# Analiza wydajności pobierania
+# Download Performance Analysis
 
 ## httpgetmt
 

@@ -1,4 +1,4 @@
-# Analiza wydajności wysyłania
+# Upload Performance Analysis
 
 ## httppostmt
 

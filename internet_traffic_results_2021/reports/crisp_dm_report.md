@@ -1,118 +1,123 @@
-# Raport analizy wydajności ruchu internetowego wg metodologii CRISP-DM
+# Internet Traffic Performance Analysis Report - CRISP-DM Methodology (2021)
 
-## 1. Zrozumienie biznesu/problemu (Business Understanding)
+## 1. Business Understanding
 
-### Cele biznesowe
+### Business Goals
 
-- Zrozumieć wydajność ruchu internetowego, aby zoptymalizować doświadczenia użytkowników
-- Identyfikacja czynników wpływających na prędkość pobierania i wysyłania danych
-- Ustalenie zależności między różnymi parametrami sieci
+- Understand internet traffic performance to optimize user experiences
+- Identify factors affecting download and upload speeds
+- Establish relationships between different network parameters
 
-### Kryteria sukcesu
+### Success Criteria
 
-- Identyfikacja kluczowych wskaźników wydajności dla ruchu internetowego
-- Znalezienie istotnych korelacji między parametrami sieci
-- Stworzenie modeli wyjaśniających wpływ różnych czynników na wydajność
+- Identification of key performance indicators for internet traffic
+- Discovery of significant correlations between network parameters
+- Creation of models explaining the impact of various factors on performance
 
-## 2. Zrozumienie danych (Data Understanding)
+## 2. Data Understanding
 
-### Opis danych
+### Data Description
 
-Analiza wykorzystuje następujące zestawy danych związane z ruchem internetowym:
+The analysis uses the following datasets related to internet traffic:
 
-**Dane dotyczące pobierania:**
-- httpget: 45780 wierszy, 15 kolumn
-- httpgetmt: 1199755 wierszy, 15 kolumn
-- httpgetmt6: 3482 wierszy, 15 kolumn
-- dlping: 2530196 wierszy, 10 kolumn
-- webget: 11396961 wierszy, 28 kolumn
+**Download-related data:**
+- httpget: 45,780 rows, 15 columns
+- httpgetmt: 1,199,755 rows, 15 columns
+- httpgetmt6: 3,482 rows, 15 columns
+- dlping: 2,530,196 rows, 10 columns
+- webget: 11,396,961 rows, 28 columns
 
-**Dane dotyczące wysyłania:**
-- httppost: 45629 wierszy, 15 kolumn
-- httppostmt: 1194194 wierszy, 15 kolumn
-- httppostmt6: 3469 wierszy, 15 kolumn
-- ulping: 2534862 wierszy, 10 kolumn
+**Upload-related data:**
+- httppost: 45,629 rows, 15 columns
+- httppostmt: 1,194,194 rows, 15 columns
+- httppostmt6: 3,469 rows, 15 columns
+- ulping: 2,534,862 rows, 10 columns
 
-**Dodatkowe dane sieci:**
-- dns: 50000 wierszy, 9 kolumn
-- ping: 50000 wierszy, 10 kolumn
-- udplatency: 50000 wierszy, 10 kolumn
-- udpjitter: 50000 wierszy, 16 kolumn
-- udpcloss: 50000 wierszy, 7 kolumn
+**Additional network data:**
+- dns: 50,000 rows, 9 columns
+- ping: 50,000 rows, 10 columns
+- udplatency: 50,000 rows, 10 columns
+- udpjitter: 50,000 rows, 16 columns
+- udpcloss: 50,000 rows, 7 columns
 
-### Eksploracja danych
+### Data Exploration
 
-Główne parametry w danych dotyczących pobierania:
-- Kolumny w httpgetmt: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+Key parameters in download-related data:
+- Columns in httpgetmt: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
 
-Główne parametry w danych dotyczących wysyłania:
-- Kolumny w httppostmt: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+Key parameters in upload-related data:
+- Columns in httppostmt: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
 
-### Jakość danych
+### Data Quality
 
-- W danych httpgetmt brakuje 0 wartości (0.00% wszystkich danych)
-- W danych httppostmt brakuje 0 wartości (0.00% wszystkich danych)
+- httpgetmt data has 0 missing values (0.00% of all data)
+- httppostmt data has 0 missing values (0.00% of all data)
 
-## 3. Przygotowanie danych (Data Preparation)
+## 3. Data Preparation
 
-### Wybór danych
+### Data Selection
 
-- Skoncentrowano się na danych HTTP GET i HTTP POST jako kluczowych wskaźnikach wydajności
-- Uwzględniono dodatkowe parametry sieci (ping, jitter) do analizy korelacji
+- Focused on HTTP GET and HTTP POST data as key performance indicators
+- Included additional network parameters (ping, jitter) for correlation analysis
 
-### Czyszczenie danych
+### Data Cleaning
 
-- Usunięto wartości odstające (poniżej 5 i powyżej 95 percentyla) dla prędkości pobierania i wysyłania
-- Usunięto wiersze z brakującymi wartościami dla kluczowych parametrów
-- Agregowano dane według dnia dla analiz czasowych
+- Removed outliers (below 5th and above 95th percentile) for download and upload speeds
+- Removed rows with missing values for key parameters
+- Aggregated data by day for time-series analysis
 
-### Transformacja danych
+### Data Transformation
 
-- Konwersja kolumn czasowych na format datetime
-- Agregacja danych według unit_id i dnia dla analizy korelacji
+- Converted timestamp columns to datetime format
+- Aggregated data by unit_id and day for correlation analysis
 
-## 4. Modelowanie (Modeling)
+## 4. Modeling
 
-### Techniki modelowania
+### Modeling Techniques
 
-- Wykorzystano regresję liniową do określenia wpływu opóźnienia na prędkość pobierania
-- Zastosowano analizę korelacji do identyfikacji zależności między parametrami
+- Used linear regression to determine the impact of latency on download speed
+- Applied correlation analysis to identify relationships between parameters
 
-### Ocena modeli
+### Model Evaluation
 
-- R² score dla modelu wpływu opóźnienia: 0.0250
-- MAE dla modelu wpływu opóźnienia: 7126082.5791
+- R² score for the latency impact model: 0.0250
+  - R² (coefficient of determination) measures what percentage of the variability in download speed is explained by the variability in latency. The value of 0.0250 means that only 2.5% of the variability in download speed is explained by latency, indicating a weak linear relationship.
+  
+- MAE for the latency impact model: 7,126,082.5791
+  - MAE (Mean Absolute Error) measures the average absolute difference between actual and predicted speeds in bytes per second. The high MAE value suggests that the model is not precise in predicting download speed based on latency.
 
-## 5. Ewaluacja (Evaluation)
+- The low R² value and high MAE indicate that in 2021, latency was not a strong predictor of data download speed, and other factors may have had a greater impact on performance.
 
-### Wyniki
+## 5. Evaluation
 
-- Średnia prędkość pobierania: 12,362,686.32 bytes/sec
-- Średnia prędkość wysyłania: 2,937,953.23 bytes/sec
-- Stosunek prędkości pobierania do wysyłania: 4.21
+### Results
 
-- Korelacja między opóźnieniem a prędkością pobierania: -0.1794
-- Każdy dodatkowy 1ms opóźnienia zmniejsza prędkość pobierania o 23.77 bytes/sec
+- Average download speed: 12,362,686.32 bytes/sec
+- Average upload speed: 2,937,953.23 bytes/sec
+- Download to upload speed ratio: 4.21
 
-### Ocena realizacji celów biznesowych
+- Correlation between latency and download speed: -0.1794
+- Each additional 1ms of latency decreases download speed by 23.77 bytes/sec
 
-- Zidentyfikowano kluczowe wskaźniki wydajności ruchu internetowego
-- Określono zależność między opóźnieniem a prędkością pobierania
-- Porównano wydajność pobierania i wysyłania danych
+### Business Goals Evaluation
 
-## 6. Wdrożenie (Deployment)
+- Identified key performance indicators for internet traffic
+- Determined the relationship between latency and download speed
+- Compared download and upload performance
 
-### Plan wdrożenia
+## 6. Deployment
 
-- Stworzono kompleksowy raport z wizualizacjami
-- Zaimplementowano algorytmy analizy w modułach Pythona
-- Przygotowano wyniki w formie gotowej do prezentacji
+### Deployment Plan
+
+- Created a comprehensive report with visualizations
+- Implemented analysis algorithms in Python modules
+- Prepared results in a presentation-ready format
 
 ### Monitoring
 
-- Wyniki analizy można wizualizować za pomocą istniejącej aplikacji run.py
-- Zaleca się regularne powtarzanie analizy dla nowych danych
+- Analysis results can be visualized using the existing run.py application
+- Regular repetition of the analysis for new data is recommended
 
-## Podsumowanie
+## Summary
 
-Analiza wydajności ruchu internetowego wykazała istotne różnice między prędkością pobierania i wysyłania danych. Zidentyfikowano wpływ opóźnienia sieci na prędkość pobierania. Wyniki analizy mogą posłużyć do optymalizacji konfiguracji sieci i poprawy doświadczeń użytkowników.
+The internet traffic performance analysis revealed significant differences between download and upload speeds. The impact of network latency on download speed was identified. The results of the analysis can be used to optimize network configuration and improve user experiences.
