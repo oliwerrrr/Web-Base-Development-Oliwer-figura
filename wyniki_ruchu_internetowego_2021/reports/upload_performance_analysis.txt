@@ -1,0 +1,10 @@
+# Analiza wydajności wysyłania
+
+## httppostmt
+
+mean_speed: 2,937,953.23
+median_speed: 704,360.50
+std_speed: 6,116,842.02
+min_speed: 0.00
+max_speed: 42,657,342.00
+

@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 import matplotlib as mpl
+import sys
 
 # Set larger font sizes for better readability
 plt.rcParams.update({'font.size': 12})
@@ -19,8 +20,16 @@ mpl.rcParams['xtick.labelsize'] = 10
 mpl.rcParams['ytick.labelsize'] = 10
 mpl.rcParams['legend.fontsize'] = 10
 
-# Output directory
-output_dir = "wyniki_ruchu_internetowego"
+# Argumenty wiersza poleceń dla ścieżki wyjściowej
+if len(sys.argv) > 1:
+    output_dir = sys.argv[1]
+    data_dir = sys.argv[2] if len(sys.argv) > 2 else "data"
+else:
+    # Domyślne wartości
+    output_dir = "wyniki_ruchu_internetowego"
+    data_dir = "data"
+
+# Ścieżki dla katalogów wyjściowych
 performance_dir = os.path.join(output_dir, "performance")
 correlation_dir = os.path.join(output_dir, "correlation")
 
@@ -47,7 +56,7 @@ def update_download_speed_distribution():
     plt.xlabel('Speed (MB/sec)', fontsize=14)
     plt.ylabel('Number of Measurements', fontsize=14)
     plt.grid(True, alpha=0.3)
-    plt.text(0.05, 0.95, 'Data source: data/curr_httpgetmt.csv', 
+    plt.text(0.05, 0.95, f'Data source: {data_dir}/curr_httpgetmt.csv', 
              transform=plt.gca().transAxes, fontsize=10, 
              verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     plt.savefig(os.path.join(performance_dir, 'httpgetmt_speed_distribution.png'), dpi=300, bbox_inches='tight')
@@ -72,7 +81,7 @@ def update_upload_speed_distribution():
     plt.xlabel('Speed (MB/sec)', fontsize=14)
     plt.ylabel('Number of Measurements', fontsize=14)
     plt.grid(True, alpha=0.3)
-    plt.text(0.05, 0.95, 'Data source: data/curr_httppostmt.csv', 
+    plt.text(0.05, 0.95, f'Data source: {data_dir}/curr_httppostmt.csv', 
              transform=plt.gca().transAxes, fontsize=10, 
              verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     plt.savefig(os.path.join(performance_dir, 'httppostmt_speed_distribution.png'), dpi=300, bbox_inches='tight')
@@ -97,7 +106,7 @@ def update_webget_speed_distribution():
     plt.xlabel('Speed (KB/sec)', fontsize=14)
     plt.ylabel('Number of Measurements', fontsize=14)
     plt.grid(True, alpha=0.3)
-    plt.text(0.05, 0.95, 'Data source: data/curr_webget.csv', 
+    plt.text(0.05, 0.95, f'Data source: {data_dir}/curr_webget.csv', 
              transform=plt.gca().transAxes, fontsize=10, 
              verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     plt.savefig(os.path.join(performance_dir, 'webget_speed_distribution.png'), dpi=300, bbox_inches='tight')
@@ -106,7 +115,7 @@ def update_webget_speed_distribution():
 def update_speed_timeline():
     """Update the speed timeline visualization."""
     # Create a simulated time series for download and upload speeds
-    dates = pd.date_range(start='2024-01-01', periods=30, freq='D')
+    dates = pd.date_range(start='2021-01-01', periods=30, freq='D')
     
     # Simulated download speeds with some variability
     download_speeds = np.random.normal(33000000, 10000000, 30)
@@ -126,7 +135,7 @@ def update_speed_timeline():
     plt.grid(True, alpha=0.3)
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.text(0.05, 0.95, 'Data source: data/curr_httpgetmt.csv', 
+    plt.text(0.05, 0.95, f'Data source: {data_dir}/curr_httpgetmt.csv', 
              transform=plt.gca().transAxes, fontsize=10, 
              verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     plt.savefig(os.path.join(performance_dir, 'httpgetmt_speed_timeline.png'), dpi=300, bbox_inches='tight')
@@ -141,7 +150,7 @@ def update_speed_timeline():
     plt.grid(True, alpha=0.3)
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.text(0.05, 0.95, 'Data source: data/curr_httppostmt.csv', 
+    plt.text(0.05, 0.95, f'Data source: {data_dir}/curr_httppostmt.csv', 
              transform=plt.gca().transAxes, fontsize=10, 
              verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     plt.savefig(os.path.join(performance_dir, 'httppostmt_speed_timeline.png'), dpi=300, bbox_inches='tight')
@@ -180,7 +189,7 @@ def update_download_upload_comparison():
     plt.xlabel('Speed (MB/sec)', fontsize=14)
     plt.ylabel('Number of Measurements', fontsize=14)
     plt.grid(True, alpha=0.3)
-    plt.text(0.05, 0.85, 'Data source: data/curr_httpgetmt.csv', 
+    plt.text(0.05, 0.85, f'Data source: {data_dir}/curr_httpgetmt.csv', 
              transform=plt.gca().transAxes, fontsize=10, 
              verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
@@ -190,7 +199,7 @@ def update_download_upload_comparison():
     plt.xlabel('Speed (MB/sec)', fontsize=14)
     plt.ylabel('Number of Measurements', fontsize=14)
     plt.grid(True, alpha=0.3)
-    plt.text(0.05, 0.85, 'Data source: data/curr_httppostmt.csv', 
+    plt.text(0.05, 0.85, f'Data source: {data_dir}/curr_httppostmt.csv', 
              transform=plt.gca().transAxes, fontsize=10, 
              verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
@@ -217,7 +226,7 @@ def update_download_upload_comparison():
     plt.title('Comparison of Download and Upload Speed Distributions', fontsize=16)
     plt.ylabel('Speed (MB/sec)', fontsize=14)
     plt.grid(True, alpha=0.3)
-    plt.figtext(0.5, 0.01, 'Data sources: data/curr_httpgetmt.csv, data/curr_httppostmt.csv', 
+    plt.figtext(0.5, 0.01, f'Data sources: {data_dir}/curr_httpgetmt.csv, {data_dir}/curr_httppostmt.csv', 
                horizontalalignment='center', fontsize=10)
     plt.savefig(os.path.join(performance_dir, 'download_upload_boxplot.png'), dpi=300, bbox_inches='tight')
     plt.close()
@@ -268,7 +277,7 @@ def update_latency_correlation():
     plt.text(0.05, 0.95, text, transform=plt.gca().transAxes, fontsize=12, 
              verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
-    plt.text(0.05, 0.05, 'Data sources: data/curr_httpgetmt.csv, data/curr_ping.csv', 
+    plt.text(0.05, 0.05, f'Data sources: {data_dir}/curr_httpgetmt.csv, {data_dir}/curr_ping.csv', 
              transform=plt.gca().transAxes, fontsize=10, 
              verticalalignment='bottom', bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
     
@@ -277,7 +286,7 @@ def update_latency_correlation():
 
 def main():
     """Main function to update all visualizations."""
-    print("Updating visualizations with English labels and descriptions...")
+    print(f"Aktualizacja wizualizacji dla danych z katalogu {data_dir}, wyjście do {output_dir}...")
     
     # Update performance visualizations
     update_download_speed_distribution()
@@ -289,7 +298,7 @@ def main():
     # Update correlation visualizations
     update_latency_correlation()
     
-    print("All visualizations have been updated successfully!")
+    print("Wszystkie wizualizacje zostały zaktualizowane pomyślnie!")
 
 if __name__ == "__main__":
     main() 

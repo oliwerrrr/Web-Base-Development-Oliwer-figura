@@ -1,0 +1,150 @@
+# Podsumowanie danych ruchu internetowego
+
+## Dane pobierania (Download)
+
+### httpget
+Wymiary: (45780, 15)
+Kolumny: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+Kolumny numeryczne: unit_id, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+
+Statystyki:
+            unit_id    fetch_time   bytes_total     bytes_sec  bytes_sec_interval   warmup_time  warmup_bytes  sequence  threads     successes      failures   location_id
+count  4.578000e+04  4.578000e+04  4.578000e+04  4.578000e+04        4.578000e+04  4.578000e+04  4.578000e+04   45780.0  45780.0  45780.000000  45780.000000  4.578000e+04
+mean   4.005493e+07  9.868295e+06  7.346011e+07  7.339066e+06        7.339066e+06  4.528261e+06  2.631560e+07       0.0      1.0      0.984993      0.015007  7.919578e+07
+std    3.065696e+06  1.181552e+06  1.304525e+08  1.303238e+07        1.303238e+07  1.237798e+06  4.674122e+07       0.0      0.0      0.121580      0.121580  5.127766e+06
+min    9.419600e+05  0.000000e+00  0.000000e+00  0.000000e+00        0.000000e+00  0.000000e+00  0.000000e+00       0.0      1.0      0.000000      0.000000  7.223927e+07
+25%    3.977458e+07  1.000997e+07  1.245714e+07  1.244446e+06        1.244446e+06  5.001341e+06  5.295658e+06       0.0      1.0      1.000000      0.000000  7.678564e+07
+50%    4.020643e+07  1.000998e+07  2.683112e+07  2.680914e+06        2.680914e+06  5.004277e+06  1.069060e+07       0.0      1.0      1.000000      0.000000  7.693406e+07
+75%    4.073007e+07  1.000999e+07  9.048998e+07  9.041908e+06        9.041908e+06  5.007203e+06  3.120097e+07       0.0      1.0      1.000000      0.000000  7.900172e+07
+max    4.750781e+07  1.002027e+07  1.175495e+09  1.174317e+08        1.174317e+08  5.024591e+06  5.703215e+08       0.0      1.0      1.000000      1.000000  9.501790e+07
+
+### httpgetmt
+Wymiary: (1199755, 15)
+Kolumny: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+Kolumny numeryczne: unit_id, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+
+Statystyki:
+            unit_id    fetch_time   bytes_total     bytes_sec  bytes_sec_interval   warmup_time  warmup_bytes   sequence    threads     successes      failures   location_id
+count  1.199755e+06  1.199755e+06  1.199755e+06  1.199755e+06        1.199755e+06  1.199755e+06  1.199755e+06  1199755.0  1199755.0  1.199755e+06  1.199755e+06  1.199755e+06
+mean   1.738088e+07  8.706036e+06  1.691326e+08  1.688217e+07        1.688217e+07  2.937293e+06  5.327468e+07        0.0        8.0  8.674188e-01  1.325812e-01  7.959870e+07
+std    1.750185e+07  3.390292e+06  2.550062e+08  2.549032e+07        2.549032e+07  2.163300e+07  9.355358e+07        0.0        0.0  3.391217e-01  3.391217e-01  5.857334e+06
+min    8.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00        0.000000e+00 -2.141630e+09  0.000000e+00        0.0        8.0  0.000000e+00  0.000000e+00  3.579800e+06
+25%    8.052700e+05  1.000040e+07  1.191964e+07  1.191294e+06        1.191294e+06  1.501426e+06  2.629910e+06        0.0        8.0  1.000000e+00  0.000000e+00  7.693377e+07
+50%    3.994625e+06  1.000996e+07  7.117056e+07  7.112027e+06        7.112027e+06  1.510366e+06  1.607308e+07        0.0        8.0  1.000000e+00  0.000000e+00  7.764251e+07
+75%    3.871362e+07  1.001000e+07  1.987377e+08  1.972816e+07        1.972816e+07  5.004098e+06  5.965936e+07        0.0        8.0  1.000000e+00  0.000000e+00  8.183673e+07
+max    4.750781e+07  1.797538e+07  1.184847e+09  1.183645e+08        1.183645e+08  2.145965e+09  5.774392e+08        0.0        8.0  1.000000e+00  1.000000e+00  9.523281e+07
+
+### httpgetmt6
+Wymiary: (3482, 15)
+Kolumny: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+Kolumny numeryczne: unit_id, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+
+Statystyki:
+            unit_id    fetch_time   bytes_total     bytes_sec  bytes_sec_interval   warmup_time  warmup_bytes  sequence  threads    successes     failures   location_id
+count  3.482000e+03  3.482000e+03  3.482000e+03  3.482000e+03        3.482000e+03  3.482000e+03  3.482000e+03    3482.0   3482.0  3482.000000  3482.000000  3.482000e+03
+mean   4.045972e+07  1.000997e+07  2.691218e+08  2.688548e+07        2.688548e+07  4.721215e+06  1.060085e+08       0.0      8.0     0.999713     0.000287  8.155996e+07
+std    1.816384e+06  3.257358e+02  2.800776e+08  2.798022e+07        2.798022e+07  7.822699e+05  1.058653e+08       0.0      0.0     0.016947     0.016947  5.502106e+06
+min    3.994925e+06  1.000388e+07  0.000000e+00  0.000000e+00        0.000000e+00  2.500105e+06  2.720000e+02       0.0      8.0     0.000000     0.000000  7.586629e+07
+25%    3.987697e+07  1.000992e+07  3.675672e+07  3.672009e+06        3.672009e+06  5.001778e+06  1.833436e+07       0.0      8.0     1.000000     0.000000  7.693309e+07
+50%    4.041724e+07  1.000998e+07  2.355286e+08  2.352940e+07        2.352940e+07  5.004568e+06  8.556389e+07       0.0      8.0     1.000000     0.000000  7.786862e+07
+75%    4.073003e+07  1.001004e+07  2.941337e+08  2.938406e+07        2.938406e+07  5.007609e+06  1.393041e+08       0.0      8.0     1.000000     0.000000  8.617467e+07
+max    4.750781e+07  1.001567e+07  1.161495e+09  1.160377e+08        1.160377e+08  5.012469e+06  5.500873e+08       0.0      8.0     1.000000     1.000000  9.448015e+07
+
+### dlping
+Wymiary: (2530196, 10)
+Kolumny: unit_id, dtime, target, rtt_avg, rtt_min, rtt_max, rtt_std, successes, failures, location_id
+Kolumny numeryczne: unit_id, rtt_avg, rtt_min, rtt_max, rtt_std, successes, failures, location_id
+
+Statystyki:
+            unit_id       rtt_avg       rtt_min       rtt_max       rtt_std     successes      failures   location_id
+count  2.530196e+06  2.530196e+06  2.530196e+06  2.530196e+06  2.530196e+06  2.530196e+06  2.530196e+06  2.530196e+06
+mean   2.108864e+07  1.247018e+05  2.860944e+04  2.042874e+05  4.166453e+04  1.305750e+02  6.037000e+00  7.947384e+07
+std    1.813176e+07  8.434602e+06  4.904760e+04  2.729634e+06  1.040178e+05  1.881558e+02  6.662168e+01  5.727364e+06
+min    8.000000e+00 -2.147484e+09  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  3.579800e+06
+25%    9.396040e+05  2.459500e+04  1.124800e+04  3.311600e+04  2.454000e+03  1.180000e+02  0.000000e+00  7.693296e+07
+50%    2.561932e+07  4.986200e+04  2.060400e+04  6.984700e+04  7.661000e+03  1.470000e+02  0.000000e+00  7.762755e+07
+75%    3.977470e+07  1.002150e+05  3.356400e+04  1.613952e+05  2.697200e+04  1.540000e+02  2.000000e+00  8.110623e+07
+max    4.750781e+07  2.147484e+09  2.975471e+06  2.147484e+09  1.323451e+06  3.276700e+04  3.276700e+04  9.523281e+07
+
+### webget
+Wymiary: (11396961, 28)
+Kolumny: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, objects, threads, requests, connections, reused_connections, lookups, request_total_time, request_min_time, request_avg_time, request_max_time, ttfb_total, ttfb_min, ttfb_avg, ttfb_max, lookup_total_time, lookup_min_time, lookup_avg_time, lookup_max_time, successes, failures, location_id
+Kolumny numeryczne: unit_id, fetch_time, bytes_total, bytes_sec, objects, threads, requests, connections, reused_connections, lookups, request_total_time, request_min_time, request_avg_time, request_max_time, ttfb_total, ttfb_min, ttfb_avg, ttfb_max, lookup_total_time, lookup_min_time, lookup_avg_time, lookup_max_time, successes, failures, location_id
+
+Statystyki:
+            unit_id    fetch_time   bytes_total     bytes_sec       objects     threads      requests   connections  reused_connections       lookups  request_total_time  request_min_time  request_avg_time  request_max_time    ttfb_total      ttfb_min      ttfb_avg      ttfb_max  lookup_total_time  lookup_min_time  lookup_avg_time  lookup_max_time     successes      failures   location_id
+count  1.139696e+07  1.139696e+07  1.139696e+07  1.139696e+07  1.139696e+07  11396961.0  1.139696e+07  1.139696e+07        1.139696e+07  1.139696e+07        1.139696e+07      1.139696e+07      1.139696e+07      1.139696e+07  1.139696e+07  1.139696e+07  1.139696e+07  1.139696e+07       1.139696e+07     1.139696e+07     1.139696e+07     1.139696e+07  1.139696e+07  1.139696e+07  1.139696e+07
+mean   1.397266e+07  3.586418e+06  1.653732e+06  8.881586e+05  1.950104e+01         8.0  1.889368e+01  1.059450e+01        8.299183e+00  3.490915e+00        4.005619e+07      1.370206e+05      1.250661e+06      2.344418e+06  8.243885e+06  1.822767e+05  5.577557e+05  9.158112e+05       2.477799e+05     5.161069e+04     7.645561e+04     1.417699e+05  8.812433e-01  1.187567e-01  7.965852e+07
+std    1.616940e+07  7.513148e+06  1.531616e+06  8.541451e+05  1.886634e+01         0.0  1.829866e+01  8.693577e+00        1.163947e+01  2.576033e+00        1.061207e+08      3.105836e+05      2.509882e+06      4.453742e+06  1.730013e+07  6.930018e+05  1.169967e+06  1.628078e+06       1.224264e+06     4.134684e+05     4.528321e+05     7.634783e+05  3.235020e-01  3.235020e-01  5.926110e+06
+min    8.000000e+00 -9.858550e+05  0.000000e+00 -6.689629e+06  0.000000e+00         8.0  0.000000e+00  0.000000e+00        0.000000e+00  0.000000e+00        0.000000e+00      0.000000e+00      0.000000e+00      0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00      -1.229767e+06    -1.283479e+06    -1.086977e+06    -1.086977e+06  0.000000e+00  0.000000e+00  3.579800e+06
+25%    6.553800e+05  4.109120e+05  1.079100e+05  2.608800e+05  1.000000e+00         8.0  1.000000e+00  1.000000e+00        0.000000e+00  1.000000e+00        4.149560e+05      3.785700e+04      1.429390e+05      2.145870e+05  3.133640e+05  7.043700e+04  1.086550e+05  1.460150e+05       2.531400e+04     1.174800e+04     1.539100e+04     1.763500e+04  1.000000e+00  0.000000e+00  7.693538e+07
+50%    3.767001e+06  1.591477e+06  7.133720e+05  6.403600e+05  8.000000e+00         8.0  7.000000e+00  7.000000e+00        0.000000e+00  4.000000e+00        7.370107e+06      6.813400e+04      5.277990e+05      9.885280e+05  2.790520e+06  1.103820e+05  2.569030e+05  3.787900e+05       6.855300e+04     1.874000e+04     2.432800e+04     2.881300e+04  1.000000e+00  0.000000e+00  7.765738e+07
+75%    2.622638e+07  2.769413e+06  2.726465e+06  1.270350e+06  3.100000e+01         8.0  3.100000e+01  1.400000e+01        8.000000e+00  4.000000e+00        3.135468e+07      1.377850e+05      8.747320e+05      1.647412e+06  7.427582e+06  1.757170e+05  3.909830e+05  7.243800e+05       1.492280e+05     2.937800e+04     3.977400e+04     5.535000e+04  1.000000e+00  0.000000e+00  8.223374e+07
+max    4.750781e+07  1.526722e+08  4.749228e+06  9.583910e+06  7.400000e+01         8.0  7.400000e+01  5.700000e+01        6.300000e+01  1.000000e+01        1.271660e+09      2.994879e+07      2.147484e+09      4.238090e+07  2.254217e+08  2.147484e+09  2.147484e+09  2.997199e+07       1.161462e+08     5.001517e+07     5.001517e+07     5.042502e+07  1.000000e+00  1.000000e+00  9.532953e+07
+
+## Dane wysyłania (Upload)
+
+### httppost
+Wymiary: (45629, 15)
+Kolumny: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+Kolumny numeryczne: unit_id, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+
+Statystyki:
+            unit_id    fetch_time   bytes_total     bytes_sec  bytes_sec_interval   warmup_time  warmup_bytes  sequence  threads     successes      failures   location_id
+count  4.562900e+04  4.562900e+04  4.562900e+04  4.562900e+04        4.562900e+04  4.562900e+04  4.562900e+04   45629.0  45629.0  45629.000000  45629.000000  4.562900e+04
+mean   4.005037e+07  9.866842e+06  2.309192e+07  2.309184e+06        2.309184e+06  3.636784e+06  9.254366e+06       0.0      1.0      0.986040      0.013960  7.920280e+07
+std    3.083017e+06  1.148341e+06  1.017178e+08  1.017163e+07        1.017163e+07  1.697120e+06  4.355508e+07       0.0      0.0      0.117328      0.117328  5.130687e+06
+min    9.419600e+05  0.000000e+00  0.000000e+00  0.000000e+00        0.000000e+00  0.000000e+00  0.000000e+00       0.0      1.0      0.000000      0.000000  7.223927e+07
+25%    3.977458e+07  1.000005e+07  9.806400e+05  9.802900e+04        9.802900e+04  1.500075e+06  3.187540e+05       0.0      1.0      1.000000      0.000000  7.678565e+07
+50%    4.020643e+07  1.000008e+07  2.247840e+06  2.247810e+05        2.247810e+05  5.000047e+06  8.611300e+05       0.0      1.0      1.000000      0.000000  7.693406e+07
+75%    4.073007e+07  1.000011e+07  1.238112e+07  1.238065e+06        1.238065e+06  5.000094e+06  4.868650e+06       0.0      1.0      1.000000      0.000000  7.900172e+07
+max    4.750781e+07  1.435638e+07  1.176753e+09  1.176747e+08        1.176747e+08  6.000039e+06  5.735029e+08       0.0      1.0      1.000000      1.000000  9.501790e+07
+
+### httppostmt
+Wymiary: (1194194, 15)
+Kolumny: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+Kolumny numeryczne: unit_id, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+
+Statystyki:
+            unit_id    fetch_time   bytes_total     bytes_sec  bytes_sec_interval   warmup_time  warmup_bytes   sequence       threads     successes      failures   location_id
+count  1.194194e+06  1.194194e+06  1.194194e+06  1.194194e+06        1.194194e+06  1.194194e+06  1.194194e+06  1194194.0  1.194194e+06  1.194194e+06  1.194194e+06  1.194194e+06
+mean   1.739585e+07  8.669556e+06  7.464121e+07  7.461187e+06        7.461187e+06  3.383433e+06  2.550211e+07        0.0  7.959253e+00  8.628623e-01  1.371377e-01  7.960081e+07
+std    1.750000e+07  3.398855e+06  2.145056e+08  2.144465e+07        2.144465e+07  8.444157e+06  8.297975e+07        0.0  4.495282e-01  3.439928e-01  3.439928e-01  5.844866e+06
+min    8.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00        0.000000e+00 -2.120771e+09  0.000000e+00        0.0  3.000000e+00  0.000000e+00  0.000000e+00  3.579800e+06
+25%    8.053120e+05  1.000004e+07  9.842085e+05  9.846300e+04        9.846300e+04  1.500050e+06  4.152840e+05        0.0  8.000000e+00  1.000000e+00  0.000000e+00  7.693378e+07
+50%    3.994669e+06  1.000007e+07  7.416390e+06  7.414970e+05        7.414970e+05  5.000037e+06  2.474632e+06        0.0  8.000000e+00  1.000000e+00  0.000000e+00  7.764251e+07
+75%    3.871362e+07  1.000013e+07  2.950332e+07  2.948877e+06        2.948877e+06  5.000098e+06  9.219728e+06        0.0  8.000000e+00  1.000000e+00  0.000000e+00  8.183672e+07
+max    4.750781e+07  2.138390e+07  1.188059e+09  1.186904e+08        1.186904e+08  2.036407e+09  8.050332e+08        0.0  8.000000e+00  1.000000e+00  1.000000e+00  9.523281e+07
+
+### httppostmt6
+Wymiary: (3469, 15)
+Kolumny: unit_id, dtime, target, address, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+Kolumny numeryczne: unit_id, fetch_time, bytes_total, bytes_sec, bytes_sec_interval, warmup_time, warmup_bytes, sequence, threads, successes, failures, location_id
+
+Statystyki:
+            unit_id    fetch_time   bytes_total     bytes_sec  bytes_sec_interval   warmup_time  warmup_bytes  sequence  threads    successes     failures   location_id
+count  3.469000e+03  3.469000e+03  3.469000e+03  3.469000e+03        3.469000e+03  3.469000e+03  3.469000e+03    3469.0   3469.0  3469.000000  3469.000000  3.469000e+03
+mean   4.044724e+07  9.998755e+06  1.299462e+07  1.299491e+06        1.299491e+06  4.819145e+06  6.886912e+06       0.0      8.0     0.996541     0.003459  8.153378e+07
+std    1.918421e+06  1.193978e+05  1.570981e+07  1.570801e+06        1.570801e+06  6.487122e+05  9.120974e+06       0.0      0.0     0.058722     0.058722  5.489318e+06
+min    3.994925e+06  2.970005e+06  4.998000e+05  4.997900e+04        4.997900e+04  2.500029e+06  8.000000e+01       0.0      8.0     0.000000     0.000000  7.586629e+07
+25%    3.987697e+07  1.000007e+07  4.373964e+06  4.373900e+05        4.373900e+05  5.000061e+06  2.193488e+06       0.0      8.0     1.000000     0.000000  7.693309e+07
+50%    4.041724e+07  1.000011e+07  7.318500e+06  7.318430e+05        7.318430e+05  5.000096e+06  3.685508e+06       0.0      8.0     1.000000     0.000000  7.786862e+07
+75%    4.073003e+07  1.000012e+07  1.291198e+07  1.291184e+06        1.291184e+06  5.000114e+06  6.987852e+06       0.0      8.0     1.000000     0.000000  8.617467e+07
+max    4.750781e+07  1.001068e+07  1.674144e+08  1.674128e+07        1.674128e+07  5.500091e+06  8.255086e+07       0.0      8.0     1.000000     1.000000  9.448015e+07
+
+### ulping
+Wymiary: (2534862, 10)
+Kolumny: unit_id, dtime, target, rtt_avg, rtt_min, rtt_max, rtt_std, successes, failures, location_id
+Kolumny numeryczne: unit_id, rtt_avg, rtt_min, rtt_max, rtt_std, successes, failures, location_id
+
+Statystyki:
+            unit_id       rtt_avg       rtt_min       rtt_max       rtt_std     successes      failures   location_id
+count  2.534862e+06  2.534862e+06  2.534862e+06  2.534862e+06  2.534862e+06  2.534862e+06  2.534862e+06  2.534862e+06
+mean   2.114121e+07  3.671336e+05  3.637862e+04  5.271884e+05  1.069310e+05  1.157592e+02  1.370284e+01  7.947805e+07
+std    1.812876e+07  7.406460e+06  1.068976e+05  2.056977e+06  2.033436e+05  1.399501e+02  4.125860e+01  5.723024e+06
+min    8.000000e+00 -2.147484e+09  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  3.579800e+06
+25%    9.407560e+05  3.407900e+04  1.251800e+04  5.307525e+04  4.495000e+03  1.120000e+02  0.000000e+00  7.693296e+07
+50%    2.561942e+07  9.091950e+04  2.175700e+04  1.749970e+05  2.236900e+04  1.310000e+02  1.000000e+00  7.762745e+07
+75%    3.977471e+07  4.372410e+05  3.475000e+04  6.570618e+05  9.857500e+04  1.510000e+02  1.000000e+01  8.110623e+07
+max    4.750781e+07  2.147484e+09  2.998882e+06  2.147484e+09  2.112474e+06  3.276700e+04  3.276700e+04  9.532953e+07
+
