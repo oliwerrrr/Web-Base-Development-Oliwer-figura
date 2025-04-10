@@ -4,13 +4,13 @@ Script to update the visualizations with English labels and descriptions.
 """
 
 import os
+import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 import matplotlib as mpl
-import sys
 
 # Set larger font sizes for better readability
 plt.rcParams.update({'font.size': 12})
@@ -20,16 +20,16 @@ mpl.rcParams['xtick.labelsize'] = 10
 mpl.rcParams['ytick.labelsize'] = 10
 mpl.rcParams['legend.fontsize'] = 10
 
-# Argumenty wiersza poleceń dla ścieżki wyjściowej
+# Command line arguments for output path
 if len(sys.argv) > 1:
     output_dir = sys.argv[1]
     data_dir = sys.argv[2] if len(sys.argv) > 2 else "data"
 else:
-    # Domyślne wartości
-    output_dir = "wyniki_ruchu_internetowego"
+    # Default values
+    output_dir = "internet_traffic_results_2023"
     data_dir = "data"
 
-# Ścieżki dla katalogów wyjściowych
+# Output directory paths
 performance_dir = os.path.join(output_dir, "performance")
 correlation_dir = os.path.join(output_dir, "correlation")
 
@@ -286,7 +286,7 @@ def update_latency_correlation():
 
 def main():
     """Main function to update all visualizations."""
-    print(f"Aktualizacja wizualizacji dla danych z katalogu {data_dir}, wyjście do {output_dir}...")
+    print(f"Updating visualizations for data from {data_dir} directory, output to {output_dir}...")
     
     # Update performance visualizations
     update_download_speed_distribution()
@@ -298,7 +298,7 @@ def main():
     # Update correlation visualizations
     update_latency_correlation()
     
-    print("Wszystkie wizualizacje zostały zaktualizowane pomyślnie!")
+    print(f"All visualizations have been successfully updated!")
 
 if __name__ == "__main__":
     main() 

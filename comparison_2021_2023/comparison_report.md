@@ -1,30 +1,30 @@
-# Porównanie wyników analizy ruchu internetowego 2021 vs 2023
+# Internet Traffic Analysis Comparison: 2021 vs 2023
 
-## Główne zmiany w wydajności
+## Major Performance Changes
 
-### Prędkość pobierania (Download)
+### Download Speed
 - 2021: 12.36 MB/s
 - 2023: 31.00 MB/s
-- Zmiana: +150.77%
+- Change: +150.77%
 
-### Prędkość wysyłania (Upload)
+### Upload Speed
 - 2021: 2.94 MB/s
 - 2023: 9.78 MB/s
-- Zmiana: +232.81%
+- Change: +232.81%
 
-### Stosunek prędkości pobierania do wysyłania
+### Download to Upload Speed Ratio
 - 2021: 4.21
 - 2023: 3.17
-- Zmiana: -24.70%
+- Change: -24.70%
 
-### Wpływ opóźnienia na prędkość pobierania
-- 2021: korelacja -0.1794
-- 2023: korelacja -0.3354
-- Zmiana w sile korelacji: +86.96%
+### Latency Impact on Download Speed
+- 2021: correlation -0.1794
+- 2023: correlation -0.3354
+- Change in correlation strength: +86.96%
 
-## Wnioski
+## Conclusions
 
-- **Znacząca poprawa prędkości pobierania** - wartość wzrosła o ponad 50% względem roku 2021
-- **Znacząca poprawa prędkości wysyłania** - wartość wzrosła o ponad 50% względem roku 2021
-- **Silniejszy wpływ opóźnienia sieci** na prędkość pobierania w roku 2023
-- **Mniejsza dysproporcja** między prędkością pobierania i wysyłania w roku 2023
+- **Significant improvement in download speed** - value increased by more than 50% compared to 2021
+- **Significant improvement in upload speed** - value increased by more than 50% compared to 2021
+- **Stronger impact of network latency** on download speed in 2023
+- **Lower disparity** between download and upload speeds in 2023

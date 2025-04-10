@@ -1,193 +1,193 @@
-# Dokumentacja Algorytmów Analizy Danych
+# Data Analysis Algorithms Documentation
 
-## Spis treści
+## Table of Contents
 
-1. [Wprowadzenie](#wprowadzenie)
-2. [Analiza Danych (DA)](#analiza-danych-da)
-3. [Eksploracja Danych (DE)](#eksploracja-danych-de)
-4. [Eksploracyjna Analiza Danych (EDA)](#eksploracyjna-analiza-danych-eda)
-5. [Korelacja Statystyczna](#korelacja-statystyczna)
-6. [Regresja Liniowa](#regresja-liniowa)
-7. [Parametry Ilościowe i Jakościowe](#parametry-ilościowe-i-jakościowe)
-8. [Wartości Odstające](#wartości-odstające)
-9. [Kwartyle i Rozstęp Międzykwartylowy (IQR)](#kwartyle-i-rozstęp-międzykwartylowy-iqr)
-10. [Mapy Ciepła](#mapy-ciepła)
-11. [Przetwarzanie Danych](#przetwarzanie-danych)
-12. [Przykłady Użycia](#przykłady-użycia)
+1. [Introduction](#introduction)
+2. [Data Analysis (DA)](#data-analysis-da)
+3. [Data Exploration (DE)](#data-exploration-de)
+4. [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+5. [Statistical Correlation](#statistical-correlation)
+6. [Linear Regression](#linear-regression)
+7. [Quantitative and Qualitative Parameters](#quantitative-and-qualitative-parameters)
+8. [Outliers](#outliers)
+9. [Quartiles and Interquartile Range (IQR)](#quartiles-and-interquartile-range-iqr)
+10. [Heatmaps](#heatmaps)
+11. [Data Processing](#data-processing)
+12. [Usage Examples](#usage-examples)
 
-## Wprowadzenie
+## Introduction
 
-Ten dokument opisuje algorytmy i techniki analizy danych zaimplementowane w projekcie. Biblioteka zawiera dwa główne moduły:
+This document describes the algorithms and data analysis techniques implemented in the project. The library contains two main modules:
 
-- `data_analysis.py` - zawiera klasę `DataAnalyzer` do analizy i wizualizacji danych
-- `data_processor.py` - zawiera klasę `DataProcessor` do przetwarzania i transformacji danych
+- `data_analysis.py` - contains the `DataAnalyzer` class for analyzing and visualizing data
+- `data_processor.py` - contains the `DataProcessor` class for processing and transforming data
 
-## Analiza Danych (DA)
+## Data Analysis (DA)
 
-Analiza danych (Data Analysis) to proces badania, czyszczenia, przekształcania i modelowania danych w celu odkrycia użytecznych informacji, wyciągnięcia wniosków i wsparcia podejmowania decyzji.
+Data Analysis is the process of examining, cleaning, transforming, and modeling data to discover useful information, draw conclusions, and support decision-making.
 
-### Zaimplementowane funkcje:
+### Implemented Functions:
 
-- Wczytywanie danych z plików CSV
-- Podstawowe statystyki opisowe
-- Wizualizacja danych
-- Analiza korelacji między zmiennymi
-- Modelowanie regresji liniowej
+- Loading data from CSV files
+- Basic descriptive statistics
+- Data visualization
+- Correlation analysis between variables
+- Linear regression modeling
 
-## Eksploracja Danych (DE)
+## Data Exploration (DE)
 
-Eksploracja danych (Data Exploration) to pierwszy krok w analizie danych, polegający na zapoznaniu się z danymi, ich strukturą i podstawowymi właściwościami.
+Data Exploration is the first step in data analysis, involving familiarization with the data, its structure, and basic properties.
 
-### Zaimplementowane funkcje:
+### Implemented Functions:
 
-- Zbadanie struktury danych (wymiary, kolumny, typy danych)
-- Wykrywanie brakujących wartości
-- Podstawowe statystyki dla kolumn numerycznych i kategorycznych
-- Generowanie raportów tekstowych z wynikami eksploracji
+- Examining data structure (dimensions, columns, data types)
+- Detecting missing values
+- Basic statistics for numeric and categorical columns
+- Generating text reports with exploration results
 
-## Eksploracyjna Analiza Danych (EDA)
+## Exploratory Data Analysis (EDA)
 
-Eksploracyjna analiza danych (Exploratory Data Analysis) to podejście do analizy zestawów danych, które wykorzystuje techniki wizualizacji do odkrywania wzorców, identyfikacji anomalii i testowania hipotez.
+Exploratory Data Analysis is an approach to analyzing datasets that uses visualization techniques to discover patterns, identify anomalies, and test hypotheses.
 
-### Zaimplementowane funkcje:
+### Implemented Functions:
 
-- Histogramy dla zmiennych numerycznych
-- Wykresy pudełkowe (boxplots) dla wykrywania wartości odstających
-- Wykresy rozproszenia (scatterplots) dla par zmiennych
-- Mapy ciepła korelacji
+- Histograms for numeric variables
+- Box plots for detecting outliers
+- Scatter plots for pairs of variables
+- Correlation heatmaps
 
-## Korelacja Statystyczna
+## Statistical Correlation
 
-Korelacja statystyczna to miara zależności między dwoma zmiennymi. Najczęściej używane metody korelacji to korelacja Pearsona, Spearmana i Kendalla.
+Statistical correlation is a measure of the relationship between two variables. The most commonly used correlation methods are Pearson, Spearman, and Kendall correlation.
 
-### Zaimplementowane funkcje:
+### Implemented Functions:
 
-- Obliczanie macierzy korelacji Pearsona
-- Obliczanie macierzy korelacji Spearmana
-- Obliczanie macierzy korelacji Kendalla
-- Wizualizacja macierzy korelacji jako map ciepła
+- Calculating Pearson correlation matrix
+- Calculating Spearman correlation matrix
+- Calculating Kendall correlation matrix
+- Visualizing correlation matrices as heatmaps
 
-## Regresja Liniowa
+## Linear Regression
 
-Regresja liniowa to technika modelowania statystycznego używana do przewidywania wartości zmiennej zależnej na podstawie jednej lub więcej zmiennych niezależnych.
+Linear regression is a statistical modeling technique used to predict the value of a dependent variable based on one or more independent variables.
 
-### Zaimplementowane funkcje:
+### Implemented Functions:
 
-- Budowa modelu regresji liniowej
-- Podział danych na zbiór treningowy i testowy
-- Ocena modelu przy użyciu różnych metryk:
+- Building a linear regression model
+- Splitting data into training and testing sets
+- Evaluating the model using various metrics:
   - MAE (Mean Absolute Error)
   - MSE (Mean Squared Error)
   - RMSE (Root Mean Squared Error)
-  - R² (współczynnik determinacji)
-- Wizualizacja linii regresji i danych
+  - R² (coefficient of determination)
+- Visualizing the regression line and data
 
-## Parametry Ilościowe i Jakościowe
+## Quantitative and Qualitative Parameters
 
-Dane można podzielić na parametry ilościowe (numeryczne) i jakościowe (kategoryczne).
+Data can be divided into quantitative (numeric) and qualitative (categorical) parameters.
 
-### Obsługa parametrów ilościowych:
+### Handling Quantitative Parameters:
 
-- Statystyki opisowe: średnia, mediana, odchylenie standardowe, itp.
-- Skalowanie danych (standaryzacja, normalizacja)
-- Tworzenie cech wielomianowych i interakcyjnych
+- Descriptive statistics: mean, median, standard deviation, etc.
+- Data scaling (standardization, normalization)
+- Creating polynomial and interaction features
 
-### Obsługa parametrów jakościowych:
+### Handling Qualitative Parameters:
 
-- Kodowanie one-hot
-- Kodowanie etykiet
-- Statystyki dla danych kategorycznych (liczebność, częstość)
+- One-hot encoding
+- Label encoding
+- Statistics for categorical data (count, frequency)
 
-## Wartości Odstające
+## Outliers
 
-Wartości odstające (outliers) to obserwacje, które znacznie różnią się od innych obserwacji w danych.
+Outliers are observations that significantly differ from other observations in the data.
 
-### Zaimplementowane metody wykrywania:
+### Implemented Detection Methods:
 
-- Metoda IQR (Interquartile Range)
-- Metoda Z-score
-- Wizualizacja wartości odstających na wykresach pudełkowych
+- IQR (Interquartile Range) method
+- Z-score method
+- Visualizing outliers on box plots
 
-## Kwartyle i Rozstęp Międzykwartylowy (IQR)
+## Quartiles and Interquartile Range (IQR)
 
-Kwartyle dzielą zbiór danych na cztery równe części. Rozstęp międzykwartylowy (IQR) to różnica między trzecim (Q3) a pierwszym (Q1) kwartylem.
+Quartiles divide the dataset into four equal parts. The Interquartile Range (IQR) is the difference between the third (Q3) and the first (Q1) quartile.
 
-### Zaimplementowane funkcje:
+### Implemented Functions:
 
-- Obliczanie kwartyli (Q1, Q2/mediana, Q3)
-- Obliczanie rozstępu międzykwartylowego (IQR)
-- Analiza kwartylowa dla wszystkich zmiennych numerycznych
-- Wizualizacja kwartyli na wykresach pudełkowych
+- Calculating quartiles (Q1, Q2/median, Q3)
+- Calculating interquartile range (IQR)
+- Quartile analysis for all numeric variables
+- Visualizing quartiles on box plots
 
-## Mapy Ciepła
+## Heatmaps
 
-Mapy ciepła (heatmaps) to graficzne reprezentacje danych, gdzie wartości są reprezentowane przez kolory. Są szczególnie przydatne do wizualizacji macierzy korelacji.
+Heatmaps are graphical representations of data where values are represented by colors. They are particularly useful for visualizing correlation matrices.
 
-### Zaimplementowane funkcje:
+### Implemented Functions:
 
-- Tworzenie map ciepła dla macierzy danych
-- Dostosowywanie kolorów i etykiet
-- Wizualizacja macierzy korelacji jako map ciepła
+- Creating heatmaps for data matrices
+- Customizing colors and labels
+- Visualizing correlation matrices as heatmaps
 
-## Przetwarzanie Danych
+## Data Processing
 
-Moduł `data_processor.py` zawiera funkcje do przetwarzania i czyszczenia danych przed analizą.
+The `data_processor.py` module contains functions for processing and cleaning data before analysis.
 
-### Zaimplementowane funkcje:
+### Implemented Functions:
 
-- Usuwanie duplikatów
-- Obsługa brakujących wartości
-- Skalowanie cech numerycznych
-- Kodowanie cech kategorycznych
-- Usuwanie wartości odstających
-- Selekcja cech
-- Tworzenie cech wielomianowych i interakcyjnych
-- Dyskretyzacja zmiennych numerycznych
+- Removing duplicates
+- Handling missing values
+- Scaling numeric features
+- Encoding categorical features
+- Removing outliers
+- Feature selection
+- Creating polynomial and interaction features
+- Discretizing numeric variables
 
-## Przykłady Użycia
+## Usage Examples
 
-### Analiza danych
+### Data Analysis
 
 ```python
 from data_analysis import DataAnalyzer
 
-# Inicjalizacja analizatora
-analyzer = DataAnalyzer(data_path="dane/przyklad.csv")
+# Initialize analyzer
+analyzer = DataAnalyzer(data_path="data/example.csv")
 
-# Wczytanie danych
+# Load data
 df = analyzer.load_data()
 
-# Eksploracja danych
+# Data exploration
 analyzer.data_exploration()
 
-# Wizualizacje EDA
+# EDA visualizations
 analyzer.eda_visualizations()
 
-# Analiza korelacji
+# Correlation analysis
 correlation_matrix = analyzer.correlation_analysis(method='pearson')
 
-# Regresja liniowa
+# Linear regression
 regression_results = analyzer.linear_regression('x1', 'y')
 
-# Analiza wartości odstających
+# Outlier analysis
 outliers_info = analyzer.detect_outliers(method='iqr')
 
-# Analiza kwartylowa
+# Quartile analysis
 quartile_info = analyzer.quartile_analysis()
 ```
 
-### Przetwarzanie danych
+### Data Processing
 
 ```python
 from data_processor import DataProcessor
 
-# Inicjalizacja procesora
+# Initialize processor
 processor = DataProcessor()
 
-# Wczytanie danych
-data = processor.load_data("dane/przyklad.csv")
+# Load data
+data = processor.load_data("data/example.csv")
 
-# Przetwarzanie danych
+# Process data
 processor.remove_duplicates()
 processor.handle_missing_values(strategy='mean')
 processor.remove_outliers(method='iqr')
@@ -196,10 +196,10 @@ processor.encode_categorical(method='onehot')
 processor.create_polynomial_features(degree=2)
 processor.create_interaction_features()
 
-# Zapisanie przetworzonych danych
-processor.save_data("dane/przetworzone.csv")
+# Save processed data
+processor.save_data("data/processed.csv")
 ```
 
 ---
 
-Dokumentacja przygotowana dla projektu Web Base Development. 
+Documentation prepared for the Web Base Development project. 

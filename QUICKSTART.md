@@ -1,53 +1,53 @@
-# Szybki start - Przeglądarka Wizualizacji
+# Quick Start - Visualization Viewer
 
-## Kurwa, jak to odpalić?
+## How to run it?
 
-1. **Instalacja zależności**:
+1. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Generowanie przykładowych danych**:
+2. **Generate sample data**:
    ```bash
    python run.py --gen-samples
    ```
 
-3. **Uruchomienie aplikacji**:
+3. **Run the application**:
    ```bash
    python run.py
    ```
 
-## Skróty klawiaturowe
+## Keyboard Shortcuts
 
-- **Następny obraz**: `→` lub przycisk "Następny"
-- **Poprzedni obraz**: `←` lub przycisk "Poprzedni"
-- **Otwórz w programie zewnętrznym**: Przycisk "Otwórz w programie"
-- **Wyjście**: `Esc` lub zamknij okno
+- **Next image**: `→` or "Next" button
+- **Previous image**: `←` or "Previous" button
+- **Open in external program**: "Open in program" button
+- **Exit**: `Esc` or close the window
 
-## Krótki przegląd wizualizacji
+## Brief Overview of Visualizations
 
-### Histogramy
-- **histogram_normalny.png**: Rozkład normalny (dzwonowaty)
-- **histogram_poisson.png**: Rozkład zdarzeń rzadkich
+### Histograms
+- **histogram_normal.png**: Normal distribution (bell-shaped)
+- **histogram_poisson.png**: Distribution of rare events
 
-### Wykresy
-- **wykres_sin.png**: Funkcja sinus (falująca)
-- **wykres_kwadratowy.png**: Funkcja kwadratowa (parabola)
+### Plots
+- **plot_sin.png**: Sine function (wave)
+- **plot_quadratic.png**: Quadratic function (parabola)
 
-### Mapy ciepła
-- **mapa_ciepla_losowa.png**: Losowe dane
-- **mapa_ciepla_sincos.png**: Wzór matematyczny sin*cos
+### Heat Maps
+- **heatmap_random.png**: Random data
+- **heatmap_sincos.png**: Mathematical pattern sin*cos
 
-## Co dalej?
+## What's Next?
 
-1. **Szczegółowa dokumentacja**: Zobacz [README_ALGORITHMS.md](README_ALGORITHMS.md)
-2. **Testy aplikacji**: Uruchom `python run.py --test`
-3. **Własne dane**: Utwórz własne wizualizacje i otwórz katalog przez `python run.py twój_katalog`
+1. **Detailed documentation**: See [README_ALGORITHMS.md](README_ALGORITHMS.md)
+2. **Application tests**: Run `python run.py --test`
+3. **Custom data**: Create your own visualizations and open the directory with `python run.py your_directory`
 
-## Kurwa, pomocy?
+## Need help?
 
-Jeśli coś nie działa:
-1. Sprawdź czy masz zainstalowane wszystkie zależności
-2. Upewnij się, że katalog z danymi istnieje
-3. Sprawdź uprawnienia do odczytu plików
-4. Zajrzyj do pełnej dokumentacji w README.md 
+If something doesn't work:
+1. Check if you have all dependencies installed
+2. Make sure the data directory exists
+3. Check file read permissions
+4. Look at the full documentation in README.md 

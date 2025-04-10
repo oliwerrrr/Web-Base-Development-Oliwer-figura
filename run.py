@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Skrypt uruchamiający aplikację przeglądania i analizy wizualizacji.
+Script for running the visualization and analysis application.
 """
 
 import os
@@ -9,63 +9,63 @@ import argparse
 import webbrowser
 from PyQt5.QtWidgets import QApplication
 
-# Import modułów z projektu
-import visualization_viewer_qt  # Przeglądarka wizualizacji
+# Import project modules
+import visualization_viewer_qt  # Visualization viewer
 try:
-    import data_analysis  # Moduł analizy danych
-    import data_processor  # Moduł przetwarzania danych
-    import internet_traffic_analysis  # Moduł analizy ruchu internetowego
+    import data_analysis  # Data analysis module
+    import data_processor  # Data processing module
+    import internet_traffic_analysis  # Internet traffic analysis module
     HAS_DATA_MODULES = True
 except ImportError:
     HAS_DATA_MODULES = False
 
 def main():
-    """Główna funkcja uruchamiająca aplikację."""
-    parser = argparse.ArgumentParser(description="Uruchamia aplikację przeglądania wizualizacji i analizy danych.")
+    """Main function to run the application."""
+    parser = argparse.ArgumentParser(description="Runs the visualization and data analysis application.")
     
-    # Argumenty dla przeglądarki wizualizacji
-    parser.add_argument('--viewer', action='store_true', help='Uruchamia przeglądarkę wizualizacji')
-    parser.add_argument('--dir', type=str, default='wyniki_test', help='Katalog z plikami wizualizacji (domyślnie: wyniki_test)')
+    # Arguments for visualization viewer
+    parser.add_argument('--viewer', action='store_true', help='Run the visualization viewer')
+    parser.add_argument('--dir', type=str, default='results_test', help='Directory with visualization files (default: results_test)')
     
-    # Argumenty dla analizy danych
+    # Arguments for data analysis
     if HAS_DATA_MODULES:
-        parser.add_argument('--analyze', action='store_true', help='Uruchamia przykładową analizę danych')
-        parser.add_argument('--data-file', type=str, help='Ścieżka do pliku CSV z danymi do analizy')
-        parser.add_argument('--correlation', action='store_true', help='Wykonuje analizę korelacji')
-        parser.add_argument('--regression', action='store_true', help='Wykonuje regresję liniową')
-        parser.add_argument('--outliers', action='store_true', help='Wykonuje analizę wartości odstających')
-        parser.add_argument('--process', action='store_true', help='Przetwarza dane przed analizą')
+        parser.add_argument('--analyze', action='store_true', help='Run sample data analysis')
+        parser.add_argument('--data-file', type=str, help='Path to CSV file with data for analysis')
+        parser.add_argument('--correlation', action='store_true', help='Perform correlation analysis')
+        parser.add_argument('--regression', action='store_true', help='Perform linear regression')
+        parser.add_argument('--outliers', action='store_true', help='Perform outlier analysis')
+        parser.add_argument('--process', action='store_true', help='Process data before analysis')
         
-        # Argument dla analizy ruchu internetowego
-        parser.add_argument('--traffic', action='store_true', help='Uruchamia analizę ruchu internetowego')
-        parser.add_argument('--data-dir', type=str, default='data', help='Katalog z danymi ruchu internetowego')
-        parser.add_argument('--output-dir', type=str, default='wyniki_ruchu_internetowego', help='Katalog na wyniki analizy ruchu')
+        # Argument for internet traffic analysis
+        parser.add_argument('--traffic', action='store_true', help='Run internet traffic analysis')
+        parser.add_argument('--data-dir', type=str, default='data', help='Directory with internet traffic data')
+        parser.add_argument('--output-dir', type=str, default='internet_traffic_results_2023', help='Directory for analysis results')
     
     args = parser.parse_args()
     
-    # Uruchom analizę ruchu internetowego, jeśli wybrano --traffic
+    # Run internet traffic analysis if --traffic was selected
     if HAS_DATA_MODULES and getattr(args, 'traffic', False):
-        print(f"Uruchamiam analizę ruchu internetowego z katalogu {args.data_dir}")
+        print(f"Running internet traffic analysis from directory {args.data_dir}")
         
-        # Sprawdź czy istnieje katalog danych, jeśli nie, wyświetl błąd
+        # Check if data directory exists, if not, display error
         if not os.path.exists(args.data_dir):
-            print(f"Błąd: Katalog danych {args.data_dir} nie istnieje!")
+            print(f"Error: Data directory {args.data_dir} does not exist!")
             return
         
-        # Utwórz katalog na wyniki, jeśli nie istnieje
+        # Create directory for results if it doesn't exist
         os.makedirs(args.output_dir, exist_ok=True)
         
-        # Uruchom analizę ruchu
+        # Run traffic analysis
         analyzer = internet_traffic_analysis.InternetTrafficAnalyzer(
             data_dir=args.data_dir, 
             output_dir=args.output_dir
         )
         results = analyzer.run_analysis()
         
-        # Wyświetl ścieżkę do katalogu z wynikami
-        print(f"\nAnaliza zakończona! Wyniki zapisano w katalogu: {args.output_dir}")
+        # Display path to results directory
+        print(f"\nAnalysis completed! Results saved in directory: {args.output_dir}")
         
-        # Otwórz katalog z wynikami w przeglądarce plików
+        # Open results directory in file browser
         try:
             if sys.platform == 'darwin':  # macOS
                 os.system(f'open "{os.path.abspath(args.output_dir)}"')
@@ -74,14 +74,14 @@ def main():
             else:  # Linux
                 os.system(f'xdg-open "{os.path.abspath(args.output_dir)}"')
         except Exception as e:
-            print(f"Nie udało się otworzyć katalogu z wynikami: {e}")
+            print(f"Failed to open results directory: {e}")
         
-        # Zapytaj czy chcesz otworzyć przeglądarkę wizualizacji
-        print("\nCzy chcesz otworzyć przeglądarkę wizualizacji z wynikami? (t/n)")
+        # Ask if you want to open the visualization viewer
+        print("\nDo you want to open the visualization viewer with the results? (y/n)")
         choice = input().lower()
         
-        if choice == 't' or choice == 'tak':
-            print(f"Uruchamiam przeglądarkę wizualizacji z katalogu {args.output_dir}")
+        if choice == 'y' or choice == 'yes':
+            print(f"Starting visualization viewer from directory {args.output_dir}")
             app = QApplication(sys.argv)
             viewer = visualization_viewer_qt.VisualizationViewer(args.output_dir)
             viewer.show()
@@ -89,87 +89,87 @@ def main():
         
         return
     
-    # Uruchom przeglądarkę wizualizacji, jeśli wybrano --viewer lub nie podano argumentów
+    # Run visualization viewer if --viewer was selected or no arguments were provided
     if args.viewer or (not args.viewer and not getattr(args, 'analyze', False) and not getattr(args, 'traffic', False)):
-        print(f"Uruchamiam przeglądarkę z katalogiem {args.dir}")
+        print(f"Starting viewer with directory {args.dir}")
         
-        # Uruchom aplikację PyQt5
+        # Run PyQt5 application
         app = QApplication(sys.argv)
         viewer = visualization_viewer_qt.VisualizationViewer(args.dir)
         viewer.show()
         sys.exit(app.exec_())
     
-    # Uruchom analizę danych, jeśli wybrano --analyze
+    # Run data analysis if --analyze was selected
     if HAS_DATA_MODULES and getattr(args, 'analyze', False):
-        data_path = args.data_file if args.data_file else "dane/przyklad.csv"
+        data_path = args.data_file if args.data_file else "data/example.csv"
         
-        # Sprawdź czy istnieje katalog dane, jeśli nie, utwórz go
+        # Check if data directory exists, if not, create it
         os.makedirs(os.path.dirname(data_path), exist_ok=True)
         
-        print(f"Uruchamiam analizę danych z pliku {data_path}")
+        print(f"Starting data analysis from file {data_path}")
         
-        # Przetwarzanie danych
+        # Data processing
         if args.process:
             processor = data_processor.DataProcessor()
             
-            # Jeśli plik nie istnieje, main() z data_processor.py wygeneruje przykładowe dane
+            # If file doesn't exist, main() from data_processor.py will generate sample data
             if not os.path.exists(data_path):
                 data_processor.main()
             else:
                 data = processor.load_data(data_path)
                 
                 if data is not None:
-                    # Przykładowe przetwarzanie
+                    # Sample processing
                     processor.remove_duplicates()
                     processor.handle_missing_values()
                     processor.remove_outliers(method='iqr')
                     processor.scale_features(method='standard')
                     processor.encode_categorical(method='onehot')
                     
-                    # Pokaż log transformacji
-                    print("\nWykonane transformacje:")
+                    # Show transformation log
+                    print("\nTransformations performed:")
                     for i, transform in enumerate(processor.get_transformation_log(), 1):
                         print(f"{i}. {transform}")
                     
-                    # Zapisz przetworzone dane
-                    processed_path = "dane/przetworzone.csv"
+                    # Save processed data
+                    processed_path = "data/processed.csv"
                     processor.save_data(processed_path)
                     data_path = processed_path
         
-        # Analiza danych
+        # Data analysis
         analyzer = data_analysis.DataAnalyzer(data_path=data_path)
         df = analyzer.load_data()
         
         if df is not None:
-            # Eksploracja danych
+            # Data exploration
             info = analyzer.data_exploration()
             
-            # Wizualizacje EDA
+            # EDA visualizations
             analyzer.eda_visualizations()
             
-            # Analiza korelacji
+            # Correlation analysis
             if getattr(args, 'correlation', False) or not any([args.correlation, args.regression, args.outliers]):
-                print("\nWykonuję analizę korelacji...")
+                print("\nPerforming correlation analysis...")
                 correlation_matrix = analyzer.correlation_analysis()
             
-            # Regresja liniowa
+            # Linear regression
             if getattr(args, 'regression', False) or not any([args.correlation, args.regression, args.outliers]):
-                print("\nWykonuję analizę regresji liniowej...")
-                # Wybierz kolumny do regresji - pierwsza i druga kolumna numeryczna
+                print("\nPerforming linear regression analysis...")
+                # Select columns for regression - first and second numeric columns
                 numeric_cols = list(df.select_dtypes(include=['number']).columns)
                 if len(numeric_cols) >= 2:
                     x_col, y_col = numeric_cols[0], numeric_cols[1]
                     regression_results = analyzer.linear_regression(x_col, y_col)
             
-            # Analiza wartości odstających
+            # Outlier analysis
             if getattr(args, 'outliers', False) or not any([args.correlation, args.regression, args.outliers]):
-                print("\nWykonuję analizę wartości odstających...")
+                print("\nPerforming outlier analysis...")
                 outliers_info = analyzer.detect_outliers()
             
-            # Wyświetl ścieżkę do katalogu z wynikami
-            print(f"\nAnaliza zakończona! Wyniki zapisano w katalogu: {analyzer.output_dir}")
+            # Display path to results directory
+            print(f"\nAnalysis completed! Results saved in directory: {analyzer.output_dir}")
             
-            # Otwórz katalog z wynikami w przeglądarce plików
+            # Open results directory in file browser
             try:
                 if sys.platform == 'darwin':  # macOS
                     os.system(f'open "{os.path.abspath(analyzer.output_dir)}"')
@@ -178,7 +178,7 @@ def main():
                 else:  # Linux
                     os.system(f'xdg-open "{os.path.abspath(analyzer.output_dir)}"')
             except Exception as e:
-                print(f"Nie udało się otworzyć katalogu z wynikami: {e}")
+                print(f"Failed to open results directory: {e}")
 
 
 if __name__ == "__main__":

@@ -1,147 +1,105 @@
-# Przeglądarka Wizualizacji
+# Internet Traffic Analysis Project
 
-Program do przeglądania i analizy wizualizacji algorytmów oparty na bibliotece PyQt5.
+This project provides tools for analyzing internet traffic data from 2021 and 2023, comparing changes in network performance metrics over time, and visualizing the results.
 
-## Wymagania systemowe
+## Features
 
-- Python 3.6 lub nowszy
-- Biblioteki: PyQt5, Pillow, numpy
+- **Internet Traffic Analysis**: Analyze download/upload speeds, latency, and other network parameters
+- **Data Visualization**: Generate charts and reports for better understanding of performance data
+- **Year-to-Year Comparison**: Compare 2021 and 2023 data to identify trends and improvements
+- **Interactive Visualization Viewer**: Browse through generated visualizations with a Qt-based viewer
 
-## Instalacja
+## Key Findings
+
+Our analysis of internet traffic data from 2021 and 2023 revealed several significant trends:
+
+- **Dramatic Speed Improvements**: Download speeds increased by 150.77% (from 12.36 MB/s to 31.00 MB/s)
+- **Upload Speed Growth**: Upload speeds improved by 232.81% (from 2.94 MB/s to 9.78 MB/s)
+- **More Balanced Connections**: The ratio of download to upload speed decreased by 24.70%, indicating more symmetrical connections
+- **Stronger Latency Impact**: Correlation between latency and download speed increased by 86.96%, suggesting greater sensitivity to network delays
+
+## Project Structure
+
+```
+.
+├── analysis_summary.md         # Summary of analysis findings
+├── compare_2021_2023.py        # Script to compare data between years
+├── comparison_2021_2023/       # Results of comparison analysis
+├── data/                       # 2023 internet traffic data
+├── data_2021/                  # 2021 internet traffic data
+├── data_analysis.py            # Data analysis algorithms
+├── data_processor.py           # Data processing utilities
+├── internet_traffic_analysis.py # Internet traffic analysis module
+├── internet_traffic_results_2021/ # Results from 2021 data analysis
+├── internet_traffic_results_2023/ # Results from 2023 data analysis
+├── run.py                      # Main script to run analyses
+├── update_visualizations.py    # Script to update visualizations
+└── visualization_viewer_qt.py  # Qt-based visualization viewer
+```
+
+## Usage
+
+### Running Internet Traffic Analysis
+
+To run the analysis on the 2023 data:
 
 ```bash
-# Klonowanie repozytorium (opcjonalne)
-git clone <url-repozytorium>
-cd <katalog-repozytorium>
+python run.py --traffic --data-dir data --output-dir internet_traffic_results_2023
+```
 
-# Instalacja zależności
+To run the analysis on the 2021 data:
+
+```bash
+python run.py --traffic --data-dir data_2021 --output-dir internet_traffic_results_2021
+```
+
+### Generating Comparison Between Years
+
+After analyzing both years' data, run the comparison script:
+
+```bash
+python compare_2021_2023.py
+```
+
+This will generate comparative visualizations and a report in the `comparison_2021_2023` directory.
+
+### Using the Visualization Viewer
+
+To browse the generated visualizations:
+
+```bash
+python run.py --viewer --dir internet_traffic_results_2023
+```
+
+## Requirements
+
+- Python 3.8+
+- NumPy
+- Pandas
+- Matplotlib
+- Seaborn
+- scikit-learn
+- PyQt5 (for visualization viewer)
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Uruchamianie
+## Technical Details
 
-```bash
-# Uruchomienie przeglądarki z domyślnym katalogiem wyników
-python visualization_viewer_qt.py
+The analysis pipeline includes several stages:
 
-# Uruchomienie przeglądarki z własnym katalogiem wyników
-python visualization_viewer_qt.py /ścieżka/do/katalogu/z/wynikami
+1. **Data Loading**: CSV data files are read and preprocessed
+2. **Data Cleaning**: Handling missing values and outliers
+3. **Statistical Analysis**: Calculating key metrics and correlations
+4. **Visualization Generation**: Creating charts and plots to represent findings
+5. **Report Generation**: Creating markdown reports summarizing results
+6. **Comparative Analysis**: Computing year-over-year changes and trends
 
-# Alternatywnie, użyj skryptu uruchomieniowego
-python run.py [katalog_z_wynikami]
-```
+## Conclusion
 
-## Generowanie przykładowych danych
+The internet traffic analysis project provides comprehensive tools for understanding and visualizing network performance metrics. The comparison between 2021 and 2023 data shows dramatic improvements in internet speeds and changes in network behavior, particularly in the growing impact of latency on actual speeds.
 
-Możesz wygenerować przykładowe wizualizacje do testów:
-
-```bash
-python test_visualization_viewer.py --generate-samples
-
-# Alternatywnie
-python run.py --gen-samples
-```
-
-To stworzy katalog `wyniki_test` z kilkoma podfolderami zawierającymi różne typy wizualizacji:
-- histogramy
-- wykresy
-- mapy ciepła
-
-## Funkcje
-
-Aplikacja oferuje następujące funkcje:
-- Przeglądanie wizualizacji w drzewiastej strukturze katalogów
-- Filtrowanie wizualizacji po nazwie
-- Nawigacja między obrazami za pomocą przycisków "Poprzedni" i "Następny"
-- Wyświetlanie informacji o obrazie (rozdzielczość, ścieżka)
-- Otwieranie obrazu w zewnętrznym programie
-- Intuicyjny interfejs z możliwością zmiany rozmiaru
-
-## Dokumentacja algorytmów i wizualizacji
-
-**KURWA, WAŻNE!** Szczegółowe informacje o zaimplementowanych algorytmach i ich wizualizacjach znajdziesz w pliku [README_ALGORITHMS.md](README_ALGORITHMS.md). Dokument zawiera:
-- Szczegółowy opis każdego typu wizualizacji
-- Wyjaśnienie każdego algorytmu i jego zastosowań
-- Instrukcje interpretacji wizualizacji
-- Przykłady tworzenia własnych wizualizacji
-
-**Zdecydowanie przeczytaj ten dokument, żeby zrozumieć co kurwa widzisz w wynikach wizualizacji!**
-
-## Testy
-
-Aby uruchomić testy automatyczne:
-
-```bash
-python test_visualization_viewer.py
-
-# Alternatywnie
-python run.py --test
-```
-
-## Struktura projektu
-
-- `visualization_viewer_qt.py` - główny program z interfejsem PyQt5
-- `test_visualization_viewer.py` - testy jednostkowe i funkcja generująca przykładowe wizualizacje
-- `run.py` - wygodny skrypt uruchomieniowy
-- `requirements.txt` - lista wymaganych bibliotek
-- `README.md` - główna dokumentacja projektu
-- `README_ALGORITHMS.md` - szczegółowa dokumentacja algorytmów i wizualizacji
-- `wyniki_test/` - katalog z przykładowymi wizualizacjami (generowany automatycznie)
-  - `histogramy/` - przykładowe histogramy (rozkład normalny, Poissona)
-  - `wykresy/` - przykładowe wykresy funkcji (sinus, funkcja kwadratowa)
-  - `mapy_ciepla/` - przykładowe mapy ciepła (losowa, sin-cos)
-
-## Rozwiązywanie problemów
-
-1. **Problemy z PyQt5**
-   - Upewnij się, że masz zainstalowaną bibliotekę PyQt5: `pip install PyQt5`
-   - Na systemach Linux może być konieczne zainstalowanie dodatkowych pakietów: `sudo apt-get install python3-pyqt5`
-
-2. **Brak wyświetlania obrazów**
-   - Sprawdź czy masz uprawnienia do odczytu plików
-   - Sprawdź czy format plików jest obsługiwany (obecnie wspierane są pliki PNG)
-
-3. **Błędy z biblioteką Pillow**
-   - Zaktualizuj Pillow: `pip install --upgrade Pillow`
-
-4. **Skrypt run.py nie działa**
-   - Sprawdź czy ma uprawnienia do wykonania: `chmod +x run.py`
-   - Upewnij się, że masz zainstalowane wszystkie zależności
-
-## Licencja
-
-Ten projekt jest udostępniany na licencji [MIT](LICENSE).
-
-## Kontakt
-
-W razie problemów lub pytań, utwórz Issue lub napisz bezpośrednio do autora.
-
-# Analiza i Wizualizacja Danych Ruchu Internetowego
-
-## Nowy moduł analizy ruchu internetowego
-
-Projekt został rozszerzony o nowy moduł do analizy wydajności ruchu internetowego, który koncentruje się na:
-
-- Analizie prędkości pobierania (download) danych
-- Analizie prędkości wysyłania (upload) danych
-- Porównaniu wydajności pobierania i wysyłania
-- Badaniu zależności między parametrami ruchu (ping, jitter, itp.)
-- Generowaniu raportów zgodnych z metodologią CRISP-DM
-
-### Uruchomienie analizy ruchu internetowego
-
-```bash
-python run.py --traffic --data-dir=data --output-dir=wyniki_ruchu_internetowego
-```
-
-### Generowane wyniki
-
-Moduł generuje szereg wizualizacji i raportów, w tym:
-
-- Histogramy rozkładu prędkości pobierania i wysyłania
-- Wykresy zmian prędkości w czasie
-- Porównanie wydajności download/upload
-- Analizę korelacji między opóźnieniem a prędkością
-- Raport w formacie CRISP-DM
-
-Wszystkie wyniki są zapisywane w katalogu `wyniki_ruchu_internetowego` i mogą być przeglądane za pomocą standardowej przeglądarki wizualizacji. 
+These findings highlight the continuous evolution of internet infrastructure and changing usage patterns, offering valuable insights for network optimization and planning. 
