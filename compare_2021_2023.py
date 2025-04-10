@@ -31,8 +31,14 @@ os.makedirs(output_dir, exist_ok=True)
 
 def load_data_summary(year_dir):
     """
-    Loads data summary from the report.
-    Returns a dictionary with key statistics.
+    Loads key performance indicators from the generated CRISP-DM report for a given year.
+    Handles potential missing files or values by providing defaults based on previous runs.
+    
+    Args:
+        year_dir (str): The directory containing the results for a specific year (e.g., 'internet_traffic_results_2021').
+    
+    Returns:
+        dict: A dictionary containing extracted metrics like 'download_speed', 'upload_speed', etc.
     """
     data = {}
     
@@ -113,7 +119,9 @@ def load_data_summary(year_dir):
 
 def compare_speeds():
     """
-    Compares download and upload speeds between years.
+    Loads summary data for 2021 and 2023, calculates changes, 
+    generates comparison plots (speed bars, ratio bars, correlation bars),
+    and writes a comparative markdown report.
     """
     # Load data
     data_2021 = load_data_summary(dir_2021)
@@ -160,7 +168,7 @@ def compare_speeds():
     # Add value labels above bars
     def add_labels(values, positions, offset):
         for i, v in enumerate(values):
-            ax.text(positions[i] + offset, v + 0.5, f"{v:.2f}", 
+            ax.text(positions[i] + offset, v * 1.02, f"{v:.2f}", 
                    ha='center', va='bottom', fontsize=10)
     
     add_labels(speeds_2021, x, -width/2)
@@ -185,7 +193,7 @@ def compare_speeds():
     plt.savefig(os.path.join(output_dir, 'speed_comparison.png'), dpi=300, bbox_inches='tight')
     plt.close()
     
-    # Speed ratio chart
+    # Speed Ratio chart
     plt.figure(figsize=(8, 6))
     ratio_data = [data_2021['speed_ratio'], data_2023['speed_ratio']]
     bars = plt.bar(['2021', '2023'], ratio_data, color=['blue', 'green'], alpha=0.7)
@@ -196,7 +204,7 @@ def compare_speeds():
         plt.text(bar.get_x() + bar.get_width()/2., height + 0.1,
                  f"{height:.2f}", ha='center', va='bottom', fontsize=10)
     
-    plt.title('Download to Upload Speed Ratio: 2021 vs 2023')
+    plt.title('Download/Upload Speed Ratio: 2021 vs 2023')
     plt.ylabel('Ratio (Download/Upload)')
     plt.grid(axis='y', alpha=0.3)
     
@@ -209,7 +217,7 @@ def compare_speeds():
     plt.savefig(os.path.join(output_dir, 'speed_ratio_comparison.png'), dpi=300, bbox_inches='tight')
     plt.close()
     
-    # Latency correlation chart
+    # Latency Impact Strength chart
     plt.figure(figsize=(8, 6))
     correlation_data = [abs(data_2021['latency_correlation']), abs(data_2023['latency_correlation'])]
     bars = plt.bar(['2021', '2023'], correlation_data, color=['blue', 'green'], alpha=0.7)
@@ -220,7 +228,7 @@ def compare_speeds():
         plt.text(bar.get_x() + bar.get_width()/2., height + 0.01,
                  f"{height:.4f}", ha='center', va='bottom', fontsize=10)
     
-    plt.title('Strength of Latency Impact on Download Speed: 2021 vs 2023')
+    plt.title('Latency Impact Strength on Download Speed: 2021 vs 2023')
     plt.ylabel('Absolute Correlation Coefficient')
     plt.grid(axis='y', alpha=0.3)
     
@@ -236,7 +244,7 @@ def compare_speeds():
     with open(os.path.join(output_dir, 'comparison_report.md'), 'w') as f:
         f.write("# Internet Traffic Analysis Comparison: 2021 vs 2023\n\n")
         
-        f.write("## Major Performance Changes\n\n")
+        f.write("## Key Performance Indicator (KPI) Changes\n\n")
         
         f.write("### Download Speed\n")
         f.write(f"- 2021: {data_2021['download_speed']/1_000_000:.2f} MB/s\n")
@@ -248,12 +256,12 @@ def compare_speeds():
         f.write(f"- 2023: {data_2023['upload_speed']/1_000_000:.2f} MB/s\n")
         f.write(f"- Change: {upload_change:+.2f}%\n\n")
         
-        f.write("### Download to Upload Speed Ratio\n")
-        f.write(f"- 2021: {data_2021['speed_ratio']:.2f}\n")
-        f.write(f"- 2023: {data_2023['speed_ratio']:.2f}\n")
+        f.write("### Download/Upload Speed Ratio\n")
+        f.write(f"- 2021: {data_2021['speed_ratio']:.2f} (Download is {data_2021['speed_ratio']:.2f}x faster than Upload)\n")
+        f.write(f"- 2023: {data_2023['speed_ratio']:.2f} (Download is {data_2023['speed_ratio']:.2f}x faster than Upload)\n")
         f.write(f"- Change: {ratio_change:+.2f}%\n\n")
         
-        f.write("### Latency Impact on Download Speed\n")
+        f.write("### Latency Impact Strength (Correlation)\n")
         f.write(f"- 2021: correlation {data_2021['latency_correlation']:.4f}\n")
         f.write(f"- 2023: correlation {data_2023['latency_correlation']:.4f}\n")
         f.write(f"- Change in correlation strength: {correlation_change:+.2f}%\n\n")
@@ -261,30 +269,30 @@ def compare_speeds():
         f.write("## Conclusions\n\n")
         
         if download_change > 50:
-            f.write("- **Significant improvement in download speed** - value increased by more than 50% compared to 2021\n")
+            f.write("- **Significant Improvement in Download Speed:** Average speed increased by more than 50% from 2021 to 2023.\n")
         elif download_change > 0:
-            f.write("- **Improvement in download speed** - value increased compared to 2021\n")
+            f.write("- **Moderate Improvement in Download Speed:** Average speed increased from 2021 to 2023.\n")
         else:
-            f.write("- **Deterioration in download speed** - value decreased compared to 2021\n")
+            f.write("- **Deterioration in Download Speed:** Average speed decreased from 2021 to 2023.\n")
             
         if upload_change > 50:
-            f.write("- **Significant improvement in upload speed** - value increased by more than 50% compared to 2021\n")
+            f.write("- **Significant Improvement in Upload Speed:** Average speed increased by more than 50% from 2021 to 2023.\n")
         elif upload_change > 0:
-            f.write("- **Improvement in upload speed** - value increased compared to 2021\n")
+            f.write("- **Moderate Improvement in Upload Speed:** Average speed increased from 2021 to 2023.\n")
         else:
-            f.write("- **Deterioration in upload speed** - value decreased compared to 2021\n")
+            f.write("- **Deterioration in Upload Speed:** Average speed decreased from 2021 to 2023.\n")
             
         if abs(data_2023['latency_correlation']) > abs(data_2021['latency_correlation']):
-            f.write("- **Stronger impact of network latency** on download speed in 2023\n")
+            f.write("- **Stronger Latency Impact:** Network latency shows a stronger negative correlation with download speed in 2023 compared to 2021.\n")
         else:
-            f.write("- **Weaker impact of network latency** on download speed in 2023\n")
+            f.write("- **Weaker Latency Impact:** The negative correlation between network latency and download speed appears weaker in 2023 compared to 2021.\n")
             
         if ratio_change < -10:
-            f.write("- **Lower disparity** between download and upload speeds in 2023\n")
+            f.write("- **Reduced Speed Asymmetry:** Download and upload speeds became more symmetrical (ratio closer to 1) in 2023 compared to 2021.\n")
         elif ratio_change > 10:
-            f.write("- **Greater disparity** between download and upload speeds in 2023\n")
+            f.write("- **Increased Speed Asymmetry:** The difference between download and upload speeds became more pronounced (ratio further from 1) in 2023 compared to 2021.\n")
         else:
-            f.write("- **Similar proportion** between download and upload speeds in both years\n")
+            f.write("- **Similar Speed Asymmetry:** The ratio between download and upload speeds remained relatively consistent between 2021 and 2023.\n")
     
     print(f"Comparison report saved: {os.path.join(output_dir, 'comparison_report.md')}")
 
