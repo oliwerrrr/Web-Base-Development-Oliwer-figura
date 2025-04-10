@@ -1,17 +1,17 @@
-# Analiza czynników wpływających na wydajność
+# Analysis of Factors Affecting Performance
 
-## Wpływ opóźnienia na prędkość pobierania
+## Impact of Latency on Download Speed (sources: data/curr_httpgetmt.csv and data/curr_ping.csv)
 
-Korelacja: -0.3354
-Wielkość próby: 1427
+Correlation: -0.3354
+Sample size: 1427
 
-### Model regresji
+### Regression Model
 
-Współczynnik kierunkowy: -27.4364
-Wyraz wolny: 14200980.3092
+Slope coefficient: -27.4364
+Intercept: 14,200,980.3092
 R² score: 0.1142
-Mean Absolute Error: 5195904.7066
-Mean Squared Error: 38587756745313.7031
+Mean Absolute Error: 5,195,904.7066
+Mean Squared Error: 38,587,756,745,313.7031
 
-Interpretacja: Każdy dodatkowy 1ms opóźnienia zmniejsza prędkość pobierania o 27.44 bytes/sec.
+Interpretation: Each additional 1ms of latency decreases download speed by 27.44 bytes/sec.
 

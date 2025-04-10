@@ -1,65 +1,65 @@
-# Podsumowanie analizy ruchu internetowego
+# Internet Traffic Analysis Summary
 
-## Główne wyniki analizy
+## Main Analysis Results
 
-### Prędkości pobierania i wysyłania danych
+### Download and Upload Speeds
 
-- **Średnia prędkość pobierania (download)**: 31 001 327,37 bajtów/s (~31 MB/s)
-- **Średnia prędkość wysyłania (upload)**: 9 777 732,40 bajtów/s (~9,8 MB/s)
-- **Mediana prędkości pobierania**: 14 366 030,00 bajtów/s (~14,4 MB/s)
-- **Mediana prędkości wysyłania**: 2 168 848,00 bajtów/s (~2,2 MB/s)
-- **Stosunek średnich (DL/UL)**: 3,17 (pobieranie jest średnio 3,17 razy szybsze)
-- **Stosunek median (DL/UL)**: 6,62 (mediana pobierania jest 6,62 razy wyższa)
+- **Average download speed**: 31,001,327.37 bytes/s (~31 MB/s)
+- **Average upload speed**: 9,777,732.40 bytes/s (~9.8 MB/s)
+- **Median download speed**: 14,366,030.00 bytes/s (~14.4 MB/s)
+- **Median upload speed**: 2,168,848.00 bytes/s (~2.2 MB/s)
+- **Average speed ratio (DL/UL)**: 3.17 (download is 3.17 times faster on average)
+- **Median speed ratio (DL/UL)**: 6.62 (median download speed is 6.62 times higher)
 
-### Korelacje i czynniki wpływające na wydajność
+### Correlations and Performance Factors
 
-- **Korelacja między opóźnieniem a prędkością pobierania**: -0,3354 (ujemna korelacja)
-- Każdy dodatkowy 1ms opóźnienia zmniejsza prędkość pobierania o około 27,44 bajtów/s
-- Model regresji wskazuje, że opóźnienie wyjaśnia około 11,42% zmienności w prędkości pobierania (R² = 0,1142)
+- **Correlation between latency and download speed**: -0.3354 (negative correlation)
+- Each additional 1ms of latency decreases download speed by approximately 27.44 bytes/s
+- The regression model indicates that latency explains about 11.42% of the variance in download speed (R² = 0.1142)
 
-## Analiza danych wejściowych
+## Input Data Analysis
 
-Przeanalizowano różne zestawy danych ruchu internetowego:
+Various internet traffic datasets were analyzed:
 
-- **Dane pobierania**: 
-  - httpgetmt: 724 511 pomiarów
-  - httpgetmt6: 489 pomiarów
-  - dlping: 1 246 832 pomiarów
-  - webget: 9 522 842 pomiarów
+- **Download data**: 
+  - httpgetmt: 724,511 measurements (source: data/curr_httpgetmt.csv)
+  - httpgetmt6: 489 measurements (source: data/curr_httpgetmt6.csv)
+  - dlping: 1,246,832 measurements (source: data/curr_dlping.csv)
+  - webget: 9,522,842 measurements (source: data/curr_webget.csv)
 
-- **Dane wysyłania**:
-  - httppostmt: 722 118 pomiarów
-  - httppostmt6: 1 159 pomiarów
-  - ulping: 1 260 944 pomiarów
+- **Upload data**:
+  - httppostmt: 722,118 measurements (source: data/curr_httppostmt.csv)
+  - httppostmt6: 1,159 measurements (source: data/curr_httppostmt6.csv)
+  - ulping: 1,260,944 measurements (source: data/curr_ulping.csv)
 
-- **Dodatkowe dane sieci** (analizowane częściowo, po 50 000 pomiarów):
-  - dns, ping, traceroute, udplatency, udpjitter, udpcloss
+- **Additional network data** (partially analyzed, 50,000 measurements each):
+  - dns, ping, traceroute, udplatency, udpjitter, udpcloss (sources: corresponding data/curr_*.csv files)
 
-## Kluczowe wnioski
+## Key Findings
 
-1. **Asymetria prędkości** - występuje znacząca asymetria między prędkościami pobierania i wysyłania, co jest typowe dla większości łączy internetowych.
+1. **Speed asymmetry** - There is a significant asymmetry between download and upload speeds, which is typical for most internet connections.
 
-2. **Wpływ opóźnienia** - potwierdzono, że większe opóźnienie (latencja) wpływa negatywnie na prędkość pobierania danych.
+2. **Latency impact** - It was confirmed that higher latency negatively affects download speed.
 
-3. **Rozkład prędkości** - rozkłady prędkości zarówno pobierania, jak i wysyłania są prawoskośne, co oznacza, że większość użytkowników doświadcza prędkości poniżej średniej.
+3. **Speed distribution** - The speed distributions for both download and upload are right-skewed, meaning that most users experience speeds below the average.
 
-4. **Zmienność w czasie** - analiza czasowa pokazuje, że prędkości pobierania i wysyłania mogą się znacząco zmieniać w różnych okresach.
+4. **Time variability** - Time analysis shows that download and upload speeds can vary significantly across different time periods.
 
-## Wygenerowane wizualizacje
+## Generated Visualizations
 
-Analiza wygenerowała szereg wizualizacji, które pomagają lepiej zrozumieć dane:
+The analysis generated a series of visualizations that help to better understand the data:
 
-1. Histogramy rozkładu prędkości pobierania i wysyłania
-2. Wykresy czasowe zmian prędkości
-3. Wykresy pudełkowe porównujące rozkłady prędkości
-4. Wykres pokazujący korelację między opóźnieniem a prędkością pobierania
+1. Histograms of download and upload speed distributions
+2. Time series charts of speed changes
+3. Box plots comparing speed distributions
+4. Scatter plot showing the correlation between latency and download speed
 
-## Zalecenia
+## Recommendations
 
-1. **Optymalizacja asymetrii** - rozważenie konfiguracji oferujących bardziej zrównoważone prędkości pobierania i wysyłania dla użytkowników, którzy często wysyłają duże ilości danych.
+1. **Asymmetry optimization** - Consider configurations offering more balanced download and upload speeds for users who frequently send large amounts of data.
 
-2. **Minimalizacja opóźnień** - podjęcie działań mających na celu redukcję opóźnień w sieci, co przełoży się na poprawę prędkości pobierania.
+2. **Latency minimization** - Take actions aimed at reducing network latency, which will translate into improved download speeds.
 
-3. **Regularne monitorowanie** - zaleca się systematyczne przeprowadzanie podobnych analiz w celu śledzenia zmian w wydajności sieci w czasie.
+3. **Regular monitoring** - It is recommended to systematically conduct similar analyses to track changes in network performance over time.
 
-4. **Głębsza analiza korelacji** - warto rozszerzyć analizę o badanie wpływu innych parametrów sieci (np. jitter, packet loss) na prędkości transmisji danych. 
+4. **Deeper correlation analysis** - It is worth expanding the analysis to study the impact of other network parameters (e.g., jitter, packet loss) on data transfer rates. 

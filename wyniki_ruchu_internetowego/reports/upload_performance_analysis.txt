@@ -1,10 +1,10 @@
-# Analiza wydajności wysyłania
+# Upload Performance Analysis
 
-## httppostmt
+## httppostmt (source: data/curr_httppostmt.csv)
 
-mean_speed: 9,777,732.40
-median_speed: 2,168,848.00
-std_speed: 19,761,106.42
-min_speed: 83,318.00
-max_speed: 113,967,511.00
+mean_speed: 9,777,732.40 bytes/sec
+median_speed: 2,168,848.00 bytes/sec
+std_speed: 19,761,106.42 bytes/sec
+min_speed: 83,318.00 bytes/sec
+max_speed: 113,967,511.00 bytes/sec
 
