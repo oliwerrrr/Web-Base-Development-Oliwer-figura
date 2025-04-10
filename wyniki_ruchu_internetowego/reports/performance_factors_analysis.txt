@@ -1,0 +1,17 @@
+# Analiza czynników wpływających na wydajność
+
+## Wpływ opóźnienia na prędkość pobierania
+
+Korelacja: -0.3354
+Wielkość próby: 1427
+
+### Model regresji
+
+Współczynnik kierunkowy: -27.4364
+Wyraz wolny: 14200980.3092
+R² score: 0.1142
+Mean Absolute Error: 5195904.7066
+Mean Squared Error: 38587756745313.7031
+
+Interpretacja: Każdy dodatkowy 1ms opóźnienia zmniejsza prędkość pobierania o 27.44 bytes/sec.
+

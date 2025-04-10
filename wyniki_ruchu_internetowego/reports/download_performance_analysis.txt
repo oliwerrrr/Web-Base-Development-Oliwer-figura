@@ -1,0 +1,18 @@
+# Analiza wydajności pobierania
+
+## httpgetmt
+
+mean_speed: 33,768,329.95
+median_speed: 14,366,030.00
+std_speed: 37,291,196.11
+min_speed: 0.00
+max_speed: 118,476,579.00
+
+## webget
+
+mean_speed: 900,612.23
+median_speed: 648,877.00
+std_speed: 915,792.36
+min_speed: 0.00
+max_speed: 3,449,123.00
+

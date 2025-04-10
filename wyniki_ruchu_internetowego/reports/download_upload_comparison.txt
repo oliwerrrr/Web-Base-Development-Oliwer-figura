@@ -1,0 +1,10 @@
+# Porównanie wydajności pobierania i wysyłania
+
+## Statystyki
+
+Średnia prędkość pobierania: 31,001,327.37 bytes/sec
+Średnia prędkość wysyłania: 9,777,732.40 bytes/sec
+Mediana prędkości pobierania: 14,366,030.00 bytes/sec
+Mediana prędkości wysyłania: 2,168,848.00 bytes/sec
+Stosunek średnich (DL/UL): 3.17
+Stosunek median (DL/UL): 6.62

@@ -14,6 +14,7 @@ import visualization_viewer_qt  # Przeglądarka wizualizacji
 try:
     import data_analysis  # Moduł analizy danych
     import data_processor  # Moduł przetwarzania danych
+    import internet_traffic_analysis  # Moduł analizy ruchu internetowego
     HAS_DATA_MODULES = True
 except ImportError:
     HAS_DATA_MODULES = False
@@ -34,11 +35,62 @@ def main():
         parser.add_argument('--regression', action='store_true', help='Wykonuje regresję liniową')
         parser.add_argument('--outliers', action='store_true', help='Wykonuje analizę wartości odstających')
         parser.add_argument('--process', action='store_true', help='Przetwarza dane przed analizą')
+        
+        # Argument dla analizy ruchu internetowego
+        parser.add_argument('--traffic', action='store_true', help='Uruchamia analizę ruchu internetowego')
+        parser.add_argument('--data-dir', type=str, default='data', help='Katalog z danymi ruchu internetowego')
+        parser.add_argument('--output-dir', type=str, default='wyniki_ruchu_internetowego', help='Katalog na wyniki analizy ruchu')
     
     args = parser.parse_args()
     
+    # Uruchom analizę ruchu internetowego, jeśli wybrano --traffic
+    if HAS_DATA_MODULES and getattr(args, 'traffic', False):
+        print(f"Uruchamiam analizę ruchu internetowego z katalogu {args.data_dir}")
+        
+        # Sprawdź czy istnieje katalog danych, jeśli nie, wyświetl błąd
+        if not os.path.exists(args.data_dir):
+            print(f"Błąd: Katalog danych {args.data_dir} nie istnieje!")
+            return
+        
+        # Utwórz katalog na wyniki, jeśli nie istnieje
+        os.makedirs(args.output_dir, exist_ok=True)
+        
+        # Uruchom analizę ruchu
+        analyzer = internet_traffic_analysis.InternetTrafficAnalyzer(
+            data_dir=args.data_dir, 
+            output_dir=args.output_dir
+        )
+        results = analyzer.run_analysis()
+        
+        # Wyświetl ścieżkę do katalogu z wynikami
+        print(f"\nAnaliza zakończona! Wyniki zapisano w katalogu: {args.output_dir}")
+        
+        # Otwórz katalog z wynikami w przeglądarce plików
+        try:
+            if sys.platform == 'darwin':  # macOS
+                os.system(f'open "{os.path.abspath(args.output_dir)}"')
+            elif sys.platform == 'win32':  # Windows
+                os.system(f'explorer "{os.path.abspath(args.output_dir)}"')
+            else:  # Linux
+                os.system(f'xdg-open "{os.path.abspath(args.output_dir)}"')
+        except Exception as e:
+            print(f"Nie udało się otworzyć katalogu z wynikami: {e}")
+        
+        # Zapytaj czy chcesz otworzyć przeglądarkę wizualizacji
+        print("\nCzy chcesz otworzyć przeglądarkę wizualizacji z wynikami? (t/n)")
+        choice = input().lower()
+        
+        if choice == 't' or choice == 'tak':
+            print(f"Uruchamiam przeglądarkę wizualizacji z katalogu {args.output_dir}")
+            app = QApplication(sys.argv)
+            viewer = visualization_viewer_qt.VisualizationViewer(args.output_dir)
+            viewer.show()
+            sys.exit(app.exec_())
+        
+        return
+    
     # Uruchom przeglądarkę wizualizacji, jeśli wybrano --viewer lub nie podano argumentów
-    if args.viewer or (not args.viewer and not getattr(args, 'analyze', False)):
+    if args.viewer or (not args.viewer and not getattr(args, 'analyze', False) and not getattr(args, 'traffic', False)):
         print(f"Uruchamiam przeglądarkę z katalogiem {args.dir}")
         
         # Uruchom aplikację PyQt5

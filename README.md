@@ -114,4 +114,34 @@ Ten projekt jest udostępniany na licencji [MIT](LICENSE).
 
 ## Kontakt
 
-W razie problemów lub pytań, utwórz Issue lub napisz bezpośrednio do autora. 
+W razie problemów lub pytań, utwórz Issue lub napisz bezpośrednio do autora.
+
+# Analiza i Wizualizacja Danych Ruchu Internetowego
+
+## Nowy moduł analizy ruchu internetowego
+
+Projekt został rozszerzony o nowy moduł do analizy wydajności ruchu internetowego, który koncentruje się na:
+
+- Analizie prędkości pobierania (download) danych
+- Analizie prędkości wysyłania (upload) danych
+- Porównaniu wydajności pobierania i wysyłania
+- Badaniu zależności między parametrami ruchu (ping, jitter, itp.)
+- Generowaniu raportów zgodnych z metodologią CRISP-DM
+
+### Uruchomienie analizy ruchu internetowego
+
+```bash
+python run.py --traffic --data-dir=data --output-dir=wyniki_ruchu_internetowego
+```
+
+### Generowane wyniki
+
+Moduł generuje szereg wizualizacji i raportów, w tym:
+
+- Histogramy rozkładu prędkości pobierania i wysyłania
+- Wykresy zmian prędkości w czasie
+- Porównanie wydajności download/upload
+- Analizę korelacji między opóźnieniem a prędkością
+- Raport w formacie CRISP-DM
+
+Wszystkie wyniki są zapisywane w katalogu `wyniki_ruchu_internetowego` i mogą być przeglądane za pomocą standardowej przeglądarki wizualizacji. 
